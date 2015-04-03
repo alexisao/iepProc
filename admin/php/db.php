@@ -7,9 +7,7 @@ class con {
     public $type = 'mysql';  
     private $db = "procesos_iep";   
     public $lid = 0;  
-  //Agregamos un comentario
-    //Comentario
-    
+
     //funcion de conexion  
     function connect() {  
         $connect = $this->type.'_connect';  
