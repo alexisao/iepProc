@@ -577,6 +577,30 @@ function growl(tipo,mes,reload){
 	}
 }
 /*
+*	function get_chardata_solicitudes
+*	@return: array de ingresos a la sala en la semana
+*/
+function get_chardata_solicitudes(){
+
+	$.ajax({            
+    url: "../php/get_chartdata_sol.php?method=fetchdata",         
+    dataType: "json",                       
+    success: function(data){      
+    		var month_data = data;
+		    Morris.Line({
+		        element: 'morris-area-chart-solicitudes',
+		        data: month_data,
+		        xkey: 'period',
+		        ykeys: ['com', 'sop'],
+		        labels: ['Comunicaciones', 'Soporte'],
+		        pointSize: 2,
+		        hideHover: 'auto',
+		        resize: true
+		    });
+        } 
+    });
+}
+/*
 *	function get_chardata
 *	@return: array de ingresos a la sala en la semana
 */

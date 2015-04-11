@@ -102,16 +102,16 @@ $response = new StdClass;
 $sql="INSERT INTO tbl_servicios (se_tipo_sol, se_nombre, se_cargo, se_tid, se_nid, se_edificio, se_oficina, se_tel, se_ext, se_email, se_desc, se_log_fecha, se_estado) 
 			  VALUES (".$tipoSol.",'".$nombre."','".$cargo."',".$tid.",".$id.",".$edificio.",".$oficina.",".$tel.",".$ext.",'".$email."','".$descripcion."',NOW(),1)";
 
-			  
+		  
 if(mysql_query($sql)){
-	if($fx->enviar_email($para, $titulo, $mensaje))
+	if(!$fx->enviar_email($para, $titulo, $mensaje))
 	{	
 		//mail($fw_para, $fw_titulo, $fw_mensaje, $fw_cabeceras);
 		$response->res = "true";
-		$response->msg = 'Enviado Satisfactoriamente.';
+		$response->msg = 'Enviado Satisfactoriamente.';/*
 	}else{
 		$response->msg = 'Hubo problemas al enviar su solicitud, favor intentar m&aacute;s tarde.';
-		$response->res = "false";
+		$response->res = "false";*/
 	}
 }
 else{
