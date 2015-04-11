@@ -578,7 +578,7 @@ function growl(tipo,mes,reload){
 }
 /*
 *	function get_chardata_solicitudes
-*	@return: array de ingresos a la sala en la semana
+*	@return: array de conteos de solicitudes de servicio técnico y comunicaciones
 */
 function get_chardata_solicitudes(){
 
@@ -595,6 +595,25 @@ function get_chardata_solicitudes(){
 		        labels: ['Comunicaciones', 'Soporte'],
 		        pointSize: 2,
 		        hideHover: 'auto',
+		        resize: true
+		    });
+        } 
+    });
+}
+/*
+*	function get_chardata_d_sol
+*	@return: array de conteos de solicitudes de servicio técnico y comunicaciones [Donut chart]
+*/
+function get_chardata_d_sol(){
+	
+	$.ajax({            
+    url: "../php/get_chartdata_donut.php?method=fetchdata",         
+    dataType: "json",                       
+    success: function(data){      
+    		var sala_data = data;
+		    Morris.Donut({
+		        element: 'morris-donut-chart-solicitudes',
+		        data: sala_data,
 		        resize: true
 		    });
         } 
@@ -625,7 +644,6 @@ function get_chardata(){
     });
 }
 function get_chardata_d(){
-
 	$.ajax({            
     url: "../php/get_chartdata_donut.php?method=fetchdata",         
     dataType: "json",                       

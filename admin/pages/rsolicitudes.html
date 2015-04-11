@@ -120,102 +120,11 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Inicio </h1>
+                    <h1 class="page-header"><i class="fa fa-bar-chart-o fa-fw" style="color:"></i> Flujo de solicitudes - IEP</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6" id="sol-box">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-inbox fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge" id="cant_solicitudes"></div>
-                                    <div>Solicitudes</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="solicitudes.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6" id="res-box">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge" id="cant_reservas"></div>
-                                    <div>Reservas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="reservas.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6" id="flu-box">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-desktop fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge" id="cant_flujo"></div>
-                                    <div>Flujos en Salas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="flujo.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6" id="obs-box">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge" id="cant_observaciones"></div>
-                                    <div>Observaciones</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="observaciones.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
+            
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
@@ -239,7 +148,7 @@
                             <i class="fa fa-bar-chart-o fa-fw"></i> Acumulado de solicitudes
                         </div>
                         <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
+                            <div id="morris-donut-chart-solicitudes"></div>
                             <a href="#" id="btn_details" class="btn btn-default btn-block">Descargar Reporte</a>
                         </div>
                         <!-- /.panel-body -->
@@ -282,7 +191,7 @@
         get_user("#fld-email");
         get_aLotData("#cant_solicitudes","#cant_reservas","#cant_flujo","#cant_observaciones");
         get_chardata_solicitudes();
-        get_chardata_d();
+        get_chardata_d_sol();
     </script>
 
     
