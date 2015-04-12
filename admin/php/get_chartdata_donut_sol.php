@@ -39,10 +39,10 @@ $tinicio=" 00:00:00";
 $tfinal=" 23:59:59";
 
 /*Construimos arreglo de datos*/
-for ($i=1; $i <=3 ; $i++) { 
+for ($i=1; $i <=2 ; $i++) { 
 
 	/*Cuenta para la sala 1*/
-	$q1="SELECT * FROM tbl_flujo_estudiantes WHERE fe_sala=".$i." AND fe_log_fecha BETWEEN '".$s_ini."' AND '".$s_fin."';";
+	$q1="SELECT * FROM tbl_servicios WHERE se_tipo_sol=".$i." AND fe_log_fecha BETWEEN '".$s_ini."' AND '".$s_fin."';";
 	$r1=mysql_query($q1,$con->connect());
 	$c1=mysql_num_rows($r1);
 
