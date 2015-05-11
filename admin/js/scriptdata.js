@@ -354,7 +354,7 @@ function registrar_salida(cod,npc){
 		data: {id:cod, codigo:npc },			
 		success: function(data){		
 		if(data.res==true){		
-			growl("success",data.mes)
+			growl("success",data.mes);
 			$("#codigo-s"+room).val('');
 			$("#pc-s"+room).val('');
 		}
@@ -403,7 +403,8 @@ function borrar_registro(cod,npc){
 		data: {id:cod, codigo:npc },			
 		success: function(data){		
 		if(data.res==true){		
-			growl("success",data.mes)
+			RefreshTable("datatables-sala1", "../php/get_flujo.php");
+			growl("success",data.mes);
 			$("#codigo-s"+room).val('');
 			$("#pc-s"+room).val('');
 		}
@@ -537,11 +538,36 @@ function recargar(){
 	location.reload();
 }
 /*
+*	RefreshTable function 
+* 	return RefreshTable
+*/
+function RefreshTable(tableId, urlData)
+    {
+    	alert("hi");
+      //Retrieve the new data with $.getJSON. You could use it ajax too
+      $.getJSON(urlData, null, function( json )
+      {
+        table = $("#"+tableId).dataTable();
+        oSettings = table.fnSettings();
+
+        table.fnClearTable(this);
+
+        for (var i=0; i<json.aaData.length; i++)
+        {
+          table.oApi._fnAddData(oSettings, json.aaData[i]);
+        }
+
+        oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+        table.fnDraw();
+      });
+    }
+
+/*
 *	Growl function 
 * 	return growl alert
 */
 function growl(tipo,mes,reload){
-	alert(" tipo: "+tipo+" mes: "+mes+" reload: "+reload);
+	//alert(" tipo: "+tipo+" mes: "+mes+" reload: "+reload);
 	switch(tipo){
 		/* Alert simple */
 		case "info":
@@ -573,7 +599,7 @@ function growl(tipo,mes,reload){
 		animate: {enter: 'animated flipInY',exit: 'animated flipOutX'}
 	});
 	if(!reload){
-		setTimeout ("recargar()", 3500); 
+		//setTimeout ("recargar()", 3500); 
 	}
 }
 /*
