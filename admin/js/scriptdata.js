@@ -403,7 +403,7 @@ function borrar_registro(cod,npc){
 		data: {id:cod, codigo:npc },			
 		success: function(data){		
 		if(data.res==true){		
-			RefreshTable("datatables-sala1", "../php/get_flujo.php");
+			$('#datatables-sala1').DataTable().ajax.reload();
 			growl("success",data.mes);
 			$("#codigo-s"+room).val('');
 			$("#pc-s"+room).val('');
@@ -543,7 +543,6 @@ function recargar(){
 */
 function RefreshTable(tableId, urlData)
     {
-    	alert("hi");
       //Retrieve the new data with $.getJSON. You could use it ajax too
       $.getJSON(urlData, null, function( json )
       {

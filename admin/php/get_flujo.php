@@ -6,7 +6,14 @@ require("../php/funciones.php");
 $fun = new funciones();
 if(!$fun->isAjax()){header ("Location: ../pages/index.html");}
 
-$sala = $_POST['sala'];
+//Verificamos si la peticion viene por get o por post
+//modificacion requerida para refrescar tablas
+if(isset($_GET['sala'])){
+	$sala=$_GET["sala"];
+}else{
+	$sala = $_POST['sala'];	
+}
+
 $con = new con();
 $con->connect();
 
@@ -34,7 +41,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				'
 				);
 }
-//echo $arrayData[1][1]
+//print_r($arrayData);
 echo json_encode($arrayData);
 
 $con->disconnect();
