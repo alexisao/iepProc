@@ -24,11 +24,13 @@
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
         <form role="form" id="contact-form">
           <div class="row">
-            <div class="col-md-4"><br><img width="80" src="img/univalle.gif"></div>
-            <div class="col-md-8"><h2>Reservas </br><small>Instituto de Educación y Pedagogía</small></h2></div>
+            <div class="col-md-12"><h2>Reservas </br><small>Instituto de Educación y Pedagogía</small></h2></div>
           </div>
           <hr class="colorgraph">
-          
+          <!-- INFO DEL USUARIO -->
+          <div class="row">
+            <div class="col-md-12"><h2><small>Informaci&oacute;n personal</small></h2></div>
+          </div>
             <div class="form-group">
               <select class="form-control input-lg" name="tipoSol" id="tipoSol" tabindex="1">
                 <option value="0">¿Qué desea reservar?</option>
@@ -70,10 +72,25 @@
               </div>
             </div>
 
-          <div class="form-group">
-            <input type="text" name="cargo" id="cargo" class="form-control input-lg" placeholder="Cargo Actual" tabindex="9">
-          </div>
+            <div class="form-group">
+              <select class="form-control input-lg" name="cargo" id="cargo" tabindex="1">
+                <option value="0">Cargo Actual</option>
+                <option value="Docente">Docente</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Funcionario">Funcionario</option>
+              </select>
+            </div>
+            
           <!-- INFO DE LA RESERVA -->
+          <div class="row">
+            <div class="col-md-12"><h2><small>Informaci&oacute;n del sal&oacute;n a reservar</small></h2></div>
+          </div>
+          <!-- Calendario -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+               Antes de oprimir <strong class="label label-primary">Enviar</strong> le sugerimos que revise este <a href="#" data-toggle="modal" data-target="#t_and_c_m">Calendario</a> para confirmar la disponibilidad de su solicitud.
+            </div>
+          </div><br>
           <div class="well">
             <div class="form-group">
               <div class="input-group date fReserva">
@@ -81,8 +98,21 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6"><input type="text" name="r_edif" id="r_edif" class="form-control input-lg" placeholder="Edificio" tabindex="11"></div>
-              <div class="col-xs-6 col-sm-6 col-md-6"><input type="text" name="r_salon" id="r_salon" class="form-control input-lg" placeholder="Nro. Salón" tabindex="12"></div><br>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+              	<select class="form-control input-lg" name="r_edif" id="r_edif" placeholder="Edificio" tabindex="11">
+	                <option value="0">Edificio</option>
+	                <option value="388">388</option>
+	                <option value="381">381</option>
+	            </select>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+              	<select class="form-control input-lg" name="r_salon" id="r_salon" placeholder="Nro. Salón" tabindex="12">
+	                <option value="0">Sal&oacute;n</option>
+	                <option value="1014">1014 (Sala 1)</option>
+	                <option value="1015">1015 (Sala 2)</option>
+	                <option value="1016">1016 (Sala 3)</option>
+	            </select>
+              </div><br>
             </div>
             <br>
             <div class="row">
@@ -103,15 +133,6 @@
             </div>
           </div>
           <!-- End -->
-          
-          <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#t_and_c_m"><img src="img/calendar-icon.png" style="width:70px; margin-left:20px;"></a>
-            </div>
-            <div class="col-xs-9 col-sm-9 col-md-9">
-               Antes de oprimir <strong class="label label-primary">Enviar</strong> le sugerimos que revise este <a href="#" data-toggle="modal" data-target="#t_and_c_m">Calendario</a> para confirmar la disponibilidad de su solicitud.
-            </div>
-          </div>
         </form>  
           <hr class="colorgraph">
           <div class="row">
