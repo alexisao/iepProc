@@ -46,6 +46,21 @@ function validarTipoSol(ts){
 	}
 }
 /*
+* Funcion que muestra los salones segun sea el edificio
+* @return data
+*/
+function verificarCombo(id){
+	switch(id){
+		case "#tipoSol":
+			if ($(id).val()==1) {$("#c_e").hide()} else{$("#c_e").show()};
+		break;
+		case "#r_edif":
+			if ($(id).val()==388) {$("#1011").hide()} else{$("#1011").show()};
+		break;
+	}
+}
+
+/*
 * Funcion que valida que un campo sea completado
 * @return bool
 */
@@ -76,6 +91,14 @@ $('.input-group.date.hasta').datetimepicker({
     autoclose: true
 });
 
+$(document).ready(function(){
+	$("#tipoSol").on("change", function(){
+		verificarCombo("#tipoSol")
+	})
+	$("#r_edif").on("change", function(){
+		verificarCombo("#r_edif")
+	})
+})
 
 $(document).on("click", ".js-enviar", function(event){
 	$('.js-enviar').attr('disabled',true);
