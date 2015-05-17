@@ -51,7 +51,56 @@ function validarTipoSol(ts){
 	}
 }
 
+/*
+*	función urlGet
+*	Retorna arreglo de variables get
+*/
+function urlGET()
+{
+    // capturamos la url
+    var loc = document.location.href;
+    // si existe el interrogante
+    if(loc.indexOf('?')>0)
+    {
+        // cogemos la parte de la url que hay despues del interrogante
+        var getString = loc.split('?')[1];
+        // obtenemos un array con cada clave=valor
+        var GET = getString.split('&');
+        var get = {};
 
+        // recorremos todo el array de valores
+        for(var i = 0, l = GET.length; i < l; i++){
+            var tmp = GET[i].split('=');
+            get[tmp[0]] = unescape(decodeURI(tmp[1]));
+        }
+        return get;
+    }
+}
+
+function mostrarVariablesGet()
+{
+    // Cogemos los valores pasados por get
+    var valores=urlGET();
+
+
+    if(valores)
+    {
+        // hacemos un bucle para pasar por cada indice del array de valores
+        for(var index in valores)
+        {
+            //console.log("<br>clave: "+index+" - valor: "+valores[index]);
+            //alert(valores[index]);
+    		$('#tipoSol option[@value='+valores[index]+']').attr('selected', 'selected');
+        }
+    }else{
+        // no se ha recibido ningun parametro por GET
+        console.log("<br>No se ha recibido ningún parámetro");
+    }
+}
+
+$(document).ready(function(){
+	mostrarVariablesGet();
+})
 $(document).on("click", ".js-enviar", function(event){
 	$('.js-enviar').attr('disabled',true);
 	if(validarCampos() && validarEmail($("#email").val()) && validarTipoSol($("#tipoSol").val())){
