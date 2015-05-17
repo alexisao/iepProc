@@ -24,9 +24,9 @@
           <hr class="colorgraph">
           
             <div class="form-group">
-              <select class="form-control input-lg" name="tipoSol" id="tipoSol" tabindex="1">
-              </select>
+              <input style="display:none" type="text" class="form-control input-lg" name="tipoSol" id="tipoSol" tabindex="1" required>
             </div>
+            
             <div class="form-group">
               <input type="text" name="nombre" id="nombre" class="form-control input-lg" placeholder="Nombre Completo" tabindex="2" required>
             </div>
@@ -49,7 +49,13 @@
             </div>
 
             <div class="row">
-              <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="edificio" id="edificio" class="form-control input-lg" placeholder="Edificio" tabindex="5"></div>
+              <div class="col-xs-3 col-sm-3 col-md-3">
+              	<select name="edificio" id="edificio" class="form-control input-lg" placeholder="Edificio" tabindex="5">
+              		<option value="0">Edificio</option>
+              		<option value="381">381</option>
+              		<option value="388">388</option>
+              	</select>
+              </div>
               <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="oficina" id="oficina" class="form-control input-lg" placeholder="Oficina" tabindex="6"></div>
               <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telefono" tabindex="6"></div>
               <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="ext" id="ext" class="form-control input-lg" placeholder="Extensión" tabindex="7"></div>
@@ -61,11 +67,22 @@
               </div>
             </div>
 
+	      <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+              	<select class="form-control input-lg" name="cargo" id="cargo" tabindex="9">
+		            <option value="0">Cargo Actual</option>
+		            <option value="Docente">Docente</option>
+		            <option value="Estudiante">Estudiante</option>
+		            <option value="Funcionario">Funcionario</option>
+		        </select>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+              	<input type="text" name="inventario" id="inventario" class="form-control input-lg" placeholder="Numero de Inventario" tabindex="10">
+              	</div>
+            </div><br>
+
           <div class="form-group">
-            <input type="text" name="cargo" id="cargo" class="form-control input-lg" placeholder="Cargo Actual" tabindex="9">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control input-lg" name="descripcion" id="descripcion" placeholder="Descripción de solicitud" rows="6" tabindex="10"></textarea>
+            <textarea class="form-control input-lg" name="descripcion" id="descripcion" placeholder="Descripción de solicitud" rows="6" tabindex="11"></textarea>
           </div>
           
           <div class="row">
@@ -96,13 +113,7 @@
             <h4 class="modal-title" id="myModalLabel">Recomendaciones</h4>
           </div>
           <div class="modal-body">
-            <p>Para subir un archivo, se recomienda subirlo a Google Drive y adicionar el enlace en el campo que lo solicita. (<a href="https://support.google.com/mail/answer/2487407?hl=es">Cómo compartir archivos con cualquier persona que tenga el enlace</a>).</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+            <p>Para solicitudes de soporte, el numero de inventario es el numero que aparece en el sticker con un codigo de barras al costado del equipo que esta presentando problemas.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Entendido</button>

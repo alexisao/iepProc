@@ -12,6 +12,7 @@ $edificio=$_POST['edificio'];
 $oficina=$_POST['oficina'];
 $tel=$_POST['tel'];
 $ext=$_POST['ext'];
+$inv=$_POST['inv'];
 $email=$_POST['email'];
 $descripcion=$_POST['descripcion'];
 
@@ -99,9 +100,8 @@ $con->connect();
 $fx = new funciones();
 $response = new StdClass;
 
-$sql="INSERT INTO tbl_servicios (se_tipo_sol, se_nombre, se_cargo, se_tid, se_nid, se_edificio, se_oficina, se_tel, se_ext, se_email, se_desc, se_log_fecha, se_estado) 
-			  VALUES (".$tipoSol.",'".$nombre."','".$cargo."',".$tid.",".$id.",".$edificio.",".$oficina.",".$tel.",".$ext.",'".$email."','".$descripcion."',NOW(),1)";
-
+$sql="INSERT INTO tbl_servicios (se_tipo_sol, se_nombre, se_cargo, se_tid, se_nid, se_edificio, se_oficina, se_tel, se_ext, se_inventario, se_email, se_desc, se_log_fecha, se_estado) 
+			  VALUES (".$tipoSol.",'".$nombre."','".$cargo."',".$tid.",".$id.",".$edificio.",".$oficina.",".$tel.",".$ext.",".$inv.",'".$email."','".$descripcion."',NOW(),1)";
 		  
 if(mysql_query($sql)){
 	if(!$fx->enviar_email($para, $titulo, $mensaje))

@@ -86,11 +86,19 @@ function mostrarVariablesGet()
     if(valores)
     {
         // hacemos un bucle para pasar por cada indice del array de valores
+        // hacemos un bucle para pasar por cada indice del array de valores
         for(var index in valores)
         {
             //console.log("<br>clave: "+index+" - valor: "+valores[index]);
             //alert(valores[index]);
-    		$('#tipoSol option[@value='+valores[index]+']').attr('selected', 'selected');
+    		if (valores[index]==1) {
+    			//Soporte
+    			$('#tipoSol').val(valores[index]);
+    		} else{
+    			//Comunicaciones
+    			$('#tipoSol').val(valores[index]);
+    			$('#inventario').hide();
+    		}
         }
     }else{
         // no se ha recibido ningun parametro por GET
@@ -118,6 +126,7 @@ $(document).on("click", ".js-enviar", function(event){
 					oficina: $("#oficina").val(),
 					tel: $("#tel").val(),
 					ext: $("#ext").val(),
+					inv: $("#inventario").val(),
 					email: $("#email").val(),
 					descripcion: $("#descripcion").val()
 					},  
