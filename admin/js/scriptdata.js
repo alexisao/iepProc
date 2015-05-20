@@ -605,21 +605,109 @@ function growl(tipo,mes,reload){
 *	function get_chardata_solicitudes
 *	@return: array de conteos de solicitudes de servicio técnico y comunicaciones
 */
-function get_chardata_solicitudes(){
-
+function get_chardata_solicitudes(opt){
+	switch(opt){
+		case 1:
+			$.ajax({            
+		    url: "../php/get_chartdata_sol.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Area({
+				        element: 'morris-area-chart-solicitudes',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['sop'],
+				        labels: ['Soporte'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+		case 2:
+			$.ajax({            
+		    url: "../php/get_chartdata_sol_dia.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Area({
+				        element: 'morris-area-chart-solicitudes-diarias',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['com', 'sop'],
+				        labels: ['Comunicaciones', 'Soporte'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+	}
+}
+/*
+*	function get_chardata_solicitudes
+*	@return: array de conteos de solicitudes de servicio técnico y comunicaciones
+*/
+function get_chardata_reservas(opt){
+	switch(opt){
+		case 1:
+			$.ajax({            
+		    url: "../php/get_chartdata_res.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Area({
+				        element: 'morris-area-chart-reservas',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['computo'],
+				        labels: ['Soporte'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+		case 2:
+			$.ajax({            
+		    url: "../php/get_chartdata_res_dia.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Area({
+				        element: 'morris-area-chart-reservas-diarias',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['computo','clases'],
+				        labels: ['Sala de Cómputo','Salon de Clases'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+	}
+}
+/*
+*	function get_chardata_d_res
+*	@return: array de conteos de reservas [Donut chart]
+*/
+function get_chardata_d_res(){
+	
 	$.ajax({            
-    url: "../php/get_chartdata_sol.php?method=fetchdata",         
+    url: "../php/get_chartdata_donut_res.php?method=fetchdata",         
     dataType: "json",                       
-    success: function(data){      
-    		var month_data = data;
-		    Morris.Line({
-		        element: 'morris-area-chart-solicitudes',
-		        data: month_data,
-		        xkey: 'period',
-		        ykeys: ['com', 'sop'],
-		        labels: ['Comunicaciones', 'Soporte'],
-		        pointSize: 2,
-		        hideHover: 'auto',
+    success: function(r){      
+    		var sol_data = r.data;
+    		$("#btn_details").append("Total de reservas: "+r.total);
+		    Morris.Donut({
+		        element: 'morris-donut-chart-solicitudes',
+		        data: sol_data,
 		        resize: true
 		    });
         } 
@@ -632,13 +720,14 @@ function get_chardata_solicitudes(){
 function get_chardata_d_sol(){
 	
 	$.ajax({            
-    url: "../php/get_chartdata_donut.php?method=fetchdata",         
+    url: "../php/get_chartdata_donut_sol.php?method=fetchdata",         
     dataType: "json",                       
-    success: function(data){      
-    		var sala_data = data;
+    success: function(r){      
+    		var sol_data = r.data;
+    		$("#btn_details").append("Total de solicitudes: "+r.total);
 		    Morris.Donut({
 		        element: 'morris-donut-chart-solicitudes',
-		        data: sala_data,
+		        data: sol_data,
 		        resize: true
 		    });
         } 
@@ -682,7 +771,60 @@ function get_chardata_d(){
         } 
     });
 }
-
+/*
+*	function mostrarDetalle
+*	@return: Panel con información detallada del registro a consultar
+*/
+function mostrarDetalle(id,tipo){
+	get_detalle(id,tipo);
+	$(".panel-info").slideDown();
+	$("#md-"+id).hide();
+	$("#od-"+id).show();
+}
+function ocultarDetalle(id){
+	$(".panel-info").slideUp();
+	$("#od-"+id).hide();
+	$("#md-"+id).show();
+}
+/* 
+*	Función get_detalle 
+*	@return: información detallada del registro a consultar
+*/
+function get_detalle(id,tipo){
+	$.ajax({			
+	url: "../php/get_detalle.php",			
+	dataType: "json",			
+	type: "POST",			
+	data: {id:id,tipo:tipo},			
+	success: function(data){		
+	if(data.res==true){					
+		$("#detalle-sol").html(data.mes);
+	}
+	else{
+		growl("danger",data.mes);
+	}
+	}});
+}
+/* 
+*	Función cambiar_estado 
+*	@return: bool
+*/
+function cambiar_estado(id,estado,tipo){
+	$.ajax({			
+	url: "../php/cambiar_estado.php",			
+	dataType: "json",			
+	type: "POST",			
+	data: {id:id,tipo:tipo,estado:estado},			
+	success: function(data){		
+	if(data.res==true){					
+		growl("info",data.mes);
+		ocultarDetalle(id);
+	}
+	else{
+		growl("danger",data.mes);
+	}
+	}});
+}
 
 $(document).on("click", "#llegada_sala1", function(event){
 	registrar_llegada(1);

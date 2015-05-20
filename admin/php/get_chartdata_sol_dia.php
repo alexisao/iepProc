@@ -27,7 +27,7 @@ if($dhoy!=0){
 
 /*Construimos el arreglo de días*/
 $dias=array();
-for ($i=5; $i >= 1; $i--) { 
+for ($i=date("t"); $i >= 1; $i--) { 
 	$dias[$i]=date('Y-m-d',strtotime($lunes.'+'.$cambio--.' day'));
 }
 $viernes=date('Y-m-d',strtotime($lunes.'+5 day'));
@@ -35,7 +35,7 @@ $tinicio=" 00:00:00";
 $tfinal=" 23:59:59";
 
 /*Construimos arreglo de datos*/
-for ($i=1; $i <=5 ; $i++) { 
+for ($i=1; $i <=date("t") ; $i++) { 
 	/*Cuenta para las solicitudes de Soporte se_tipo_sol=1*/
 	$q1="SELECT * FROM tbl_servicios WHERE se_tipo_sol=1 AND se_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
 	$r1=mysql_query($q1,$con->connect());

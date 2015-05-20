@@ -37,17 +37,17 @@ $tfinal=" 23:59:59";
 /*Construimos arreglo de datos*/
 for ($i=1; $i <=5 ; $i++) { 
 	/*Cuenta para las solicitudes de Soporte se_tipo_sol=1*/
-	$q1="SELECT * FROM tbl_servicios WHERE se_tipo_sol=1 AND se_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
+	$q1="SELECT * FROM tbl_reservas WHERE re_tipo_sol=1 AND re_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
 	$r1=mysql_query($q1,$con->connect());
 	$c1=mysql_num_rows($r1);
 	/*Cuenta para las solicitudes de Comunicaciones se_tipo_sol=2*/
-	$q2="SELECT * FROM tbl_servicios WHERE se_tipo_sol=2 AND se_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
+	$q2="SELECT * FROM tbl_reservas WHERE re_tipo_sol=2 AND re_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
 	$r2=mysql_query($q2,$con->connect());
 	$c2=mysql_num_rows($r2);
 	$datos[]=array(
 		"period"=>$dias[$i],
-		"com" =>$c2,
-		"sop" =>$c1,
+		"computo" =>$c1,
+		"clases" =>$c2,
 	);
 	//$response->data=$datos[$i];
 }
