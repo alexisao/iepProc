@@ -46,8 +46,36 @@ function validarTipoSol(ts){
 	}
 }
 /*
+* Funcion que muestra los option segun los datos del array
+* @return null
+*/
+function optionShow(ids){
+	optionHide();
+	$.each(ids, function( index, value ) {
+	  $("#"+value).show();
+	});
+}
+/*
+* Funcion que oculta todo
+* @return null
+*/
+function optionHide(){
+	$("#1014").hide();
+	$("#1015").hide();
+	$("#1013").hide();
+	$("#2025").hide();
+	$("#3021").hide();
+	$("#3048").hide();
+	$("#1011").hide();
+	$("#1016").hide();
+	$("#2014").hide();
+	$("#2017").hide();
+	$("#2023").hide();
+}
+
+/*
 * Funcion que muestra los salones segun sea el edificio
-* @return data
+* @return null
 */
 function verificarCombo(id){
 	switch(id){
@@ -55,7 +83,22 @@ function verificarCombo(id){
 			if ($(id).val()==1) {$("#c_e").hide()} else{$("#c_e").show()};
 		break;
 		case "#r_edif":
-			if ($(id).val()==388) {$("#1011").hide()} else{$("#1011").show()};
+			if (($(id).val()==381)&&($("#tipoSol").val()==1)){//Reserva de sala en el 381
+				var ids = [1011];
+				optionShow(ids);
+			} 
+			if (($(id).val()==388)&&($("#tipoSol").val()==1)){//Reserva de sala en el 388
+				var ids = [1014,1015];
+				optionShow(ids);
+			}
+			if (($(id).val()==381)&&($("#tipoSol").val()==2)){//Reserva de salon de clase en el 381
+				var ids = [1016,2014,2017,2023]; 
+				optionShow(ids);
+			} 
+			if (($(id).val()==388)&&($("#tipoSol").val()==2)){//Reserva de alon de clase en el 388
+				var ids = [1013,2025,3021,3048]; 
+				optionShow(ids);
+			}
 		break;
 	}
 }
