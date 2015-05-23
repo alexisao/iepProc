@@ -141,57 +141,6 @@
                   </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Flujo reciente en salas de c&oacute;mputo
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart-reservas-diarias"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="btn_details" >
-                            <i class="fa fa-bar-chart-o fa-fw"></i>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart-solicitudes"></div>
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Reservas Diarias
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart-reservas"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-            </div>
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -220,11 +169,10 @@
 
     <!-- Custom Scripts -->
     <script src="../js/scriptdata.js"></script>
+    <script src="../js/scriptFlujo.js"></script>
     <script type="text/javascript">
         get_user("#fld-email");
-        get_chardata_reservas(1);
-        get_chardata_reservas(2);
-        get_chardata_d_res();
+        get_flujoData();
     </script>
 
     

@@ -613,7 +613,7 @@ function get_chardata_solicitudes(opt){
 		    dataType: "json",                       
 		    success: function(data){      
 		    		var month_data = data;
-				    Morris.Area({
+				    Morris.Bar({
 				        element: 'morris-area-chart-solicitudes',
 				        data: month_data,
 				        xkey: 'period',
@@ -659,12 +659,12 @@ function get_chardata_reservas(opt){
 		    dataType: "json",                       
 		    success: function(data){      
 		    		var month_data = data;
-				    Morris.Area({
+				    Morris.Bar({
 				        element: 'morris-area-chart-reservas',
 				        data: month_data,
 				        xkey: 'period',
-				        ykeys: ['computo'],
-				        labels: ['Soporte'],
+				        ykeys: ['computo','clases'],
+				        labels: ['Salon de Cómputo','Salon de Clases'],
 				        pointSize: 2,
 				        hideHover: 'auto',
 				        resize: true
@@ -678,7 +678,7 @@ function get_chardata_reservas(opt){
 		    dataType: "json",                       
 		    success: function(data){      
 		    		var month_data = data;
-				    Morris.Area({
+				    Morris.Line({
 				        element: 'morris-area-chart-reservas-diarias',
 				        data: month_data,
 				        xkey: 'period',
