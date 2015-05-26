@@ -36,7 +36,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				$fila[2]."-".$fila[3],
 				'
 				<button type="button" onclick="registrar_salida('.$fila[4].','.$fila[2].');" title="Registrar Salida" class="btn btn-success btn-circle"><i class="fa fa-paper-plane-o"></i></button>
-				<button type="button" onclick="borrar_registro('.$fila[4].','.$fila[2].');" title="Borrar Registro" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
+				<button type="button" onclick="borrar_registro('.$fila[4].','.$fila[2].','.$sala.');" title="Borrar Registro" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
 
 				'
 				);

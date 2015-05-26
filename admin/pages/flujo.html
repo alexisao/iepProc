@@ -348,12 +348,38 @@
     <script>
     $(document).ready(function() {
         get_user("#fld-email");
-        var oTable1 = $('#datatables-sala1').dataTable({responsive: true});
-        var oTable2 = $('#datatables-sala2').dataTable({responsive: true});
-        var oTable3 = $('#datatables-sala3').dataTable({responsive: true});
-        get_flujo(oTable1,1);
+        var oTable1 = $('#datatables-sala1').dataTable({
+        	responsive: true,
+        	language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
+        var oTable2 = $('#datatables-sala2').dataTable({
+        	responsive: true,
+        	language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
+        var oTable3 = $('#datatables-sala3').dataTable({
+        	responsive: true,
+        	language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
+    	
+    	get_flujo(oTable1,1);
         get_flujo(oTable2,2);
-        get_flujo(oTable3,3);
+        get_flujo(oTable3,3);	
+        
+
+        setInterval( function () {
+		    get_flujo(oTable1,1);
+		    //console.log("recargo sala 1.");
+		    get_flujo(oTable2,2);
+		    //console.log("recargo sala 2.");
+		    get_flujo(oTable3,3);
+		    //console.log("recargo sala 3.");
+		}, 5000 );
     });
     </script>
 

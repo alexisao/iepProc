@@ -393,7 +393,7 @@ function registrar_atendido(cod){
 *	Función borrar_registro
 *	@return: eliminar registro de la bd
 */
-function borrar_registro(cod,npc){
+function borrar_registro(cod,npc,sala){
 	bootbox.confirm("¿Está seguro que desea borrar la entrada del estudiante con codigo "+npc+"?", function(result) {
 	  if(result){
 	  	$.ajax({			
@@ -402,11 +402,9 @@ function borrar_registro(cod,npc){
 		type: "POST",			
 		data: {id:cod, codigo:npc },			
 		success: function(data){		
-		if(data.res==true){		
-			$('#datatables-sala1').DataTable().ajax.reload();
+		if(data.res==true){
+			
 			growl("success",data.mes);
-			$("#codigo-s"+room).val('');
-			$("#pc-s"+room).val('');
 		}
 		else{
 			growl("danger",data.mes)
