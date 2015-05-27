@@ -204,6 +204,7 @@ function get_registrados(oTable){
 		} 
 	}});
 }
+
 /* 
 *	Función get_flujo
 *	@return: arreglo para datatable con los estudiantes registrados
@@ -393,7 +394,7 @@ function registrar_atendido(cod){
 *	Función borrar_registro
 *	@return: eliminar registro de la bd
 */
-function borrar_registro(cod,npc,sala){
+function borrar_registro(cod,npc,obj){
 	bootbox.confirm("¿Está seguro que desea borrar la entrada del estudiante con codigo "+npc+"?", function(result) {
 	  if(result){
 	  	$.ajax({			
@@ -404,6 +405,8 @@ function borrar_registro(cod,npc,sala){
 		success: function(data){		
 		if(data.res==true){
 			growl("success",data.mes);
+			console.log($("#"+obj.id).closest('tr'));
+			$("#"+obj.id).closest('tr').fadeOut()
 		}
 		else{
 			growl("danger",data.mes)

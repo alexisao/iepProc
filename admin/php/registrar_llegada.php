@@ -33,18 +33,26 @@ if($rows[0]==0){
 		$res=false;
 		$mes="Este estudiante registra un ingreso en esta o en otra sala.";
 	}else{
-		/*insercción*/
-		$selectSQL ="INSERT INTO tbl_flujo_estudiantes (fe_es_codigo, fe_sala, fe_pc, fe_hora_entrada, fe_monitor, fe_estado)
-					 	VALUES ('".$codigo."',".$sala.",".$pc.",'".$hora_entrada."',".$monitor.",1);";
-
-		$row_cons = mysql_query($selectSQL);
-
-		if($row_cons){
-			$res=true;
-			$mes="Guardado Satisfactoriamente.";
-		}else{
+		/*Consulta a la Bd para evitar registrar en equipos que en el momento se encuentren en uso */
+		$row_check_2 = mysql_query("SELECT COUNT(*) FROM tbl_flujo_estudiantes WHERE  fe_estado=1 AND fe_sala=".$sala." AND fe_pc=".$pc.";");
+		$fila_2 = mysql_fetch_array($row_check_2);
+		if($fila_2[0]>0){
 			$res=false;
-			$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+			$mes="Este pc se encuentra en uso.";
+		}else{
+			/*insercción*/
+			$selectSQL ="INSERT INTO tbl_flujo_estudiantes (fe_es_codigo, fe_sala, fe_pc, fe_hora_entrada, fe_monitor, fe_estado)
+						 	VALUES ('".$codigo."',".$sala.",".$pc.",'".$hora_entrada."',".$monitor.",1);";
+
+			$row_cons = mysql_query($selectSQL);
+
+			if($row_cons){
+				$res=true;
+				$mes="Guardado Satisfactoriamente.";
+			}else{	
+				$res=false;
+				$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+			}
 		}
 	}
 }
