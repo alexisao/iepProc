@@ -235,8 +235,16 @@
     <script>
         get_user("#fld-email");
         $(document).ready(function() {
-        var oTable = $('#datatables-observaciones').dataTable({responsive: true});
+        var oTable = $('#datatables-observaciones').dataTable({
+            responsive: true,
+            language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
         get_observaciones(oTable);
+        setInterval( function () {
+            get_observaciones(oTable);
+        }, 5000 );
     });
     </script>
 

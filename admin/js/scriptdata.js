@@ -403,7 +403,6 @@ function borrar_registro(cod,npc,sala){
 		data: {id:cod, codigo:npc },			
 		success: function(data){		
 		if(data.res==true){
-			
 			growl("success",data.mes);
 		}
 		else{

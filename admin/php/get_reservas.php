@@ -17,7 +17,7 @@ $selectSQL ="SELECT * FROM tbl_reservas";
 $row_cons = mysql_query($selectSQL);
 
 while ($fila = mysql_fetch_array($row_cons)) { 
-	if($fila[1]==1){$img='<i class="fa fa-settings fa-fw"></i>'; $title="Salón de Informática";}
+	if($fila[1]==1){$img='<i class="fa fa-settings fa-fw"></i>'; $title="Sala de Cómputo";}
 	if($fila[1]==2){$img='<i class="fa fa-settings fa-fw"></i>'; $title="Salón de Clases";}
 	$tipo_solicitud=$title;
 	$telext=$fila[8]."-".$fila[9];
