@@ -21,6 +21,17 @@ $selectSQL ="SELECT * FROM tbl_observaciones OB
 $row_cons = mysql_query($selectSQL);
 
 while ($fila = mysql_fetch_array($row_cons)) { 
+	/* Definimos que botones mostramos segun el tipo de usuario */
+	$btn_1='<button type="button" onclick="registrar_atendido('.$fila[0].');" title="Marcar como <<Atendido>>" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button>';
+	$btn_2='<button type="button" onclick="borrar_observacion('.$fila[0].');" title="Borrar observación" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>';
+	switch($_SESSION["ses_tipo"]) {
+		case 1:
+			$opciones=$btn_1.$btn_2;
+		break;
+		case 4:
+			$opciones=$btn_2;
+		break;
+	}
 	$nombre = explode("@", $fila[10]);
 	$arrayData[]=array(
 				$fila[4],
@@ -28,10 +39,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				'<button type="button" class="btn btn-primary"><i class="fa fa-desktop"></i>&nbsp;'.$fila[3].'</button>',
 				$nombre[0],
 				$fila[5],
-				'
-				<button type="button" onclick="registrar_atendido('.$fila[0].');" title="Marcar como <<Atendido>>" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button>
-				<button type="button" onclick="borrar_observacion('.$fila[0].');" title="Borrar observación" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
-				'
+				$opciones
 				);
 }
 //echo $arrayData[1][1]

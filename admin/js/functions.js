@@ -48,15 +48,24 @@ $.ajax({
 }
 
 /*
+*	Ejecutar login con ENTER
+*/
+$(document).ready(function(){
+	$('#password').keypress(function(e){   
+	   if(e.which == 13){      
+	     login();
+	   }   
+	});   	
+});
+
+/*
 *	LOAD
 */
 $(document).on("click", "#js-enviar", function(event){
 	if(validarCampos()){
 		login();
-
 	}
 	else{
 		alert("[ERROR]: Campos son obligatorios.");
-
 	}	
 });
