@@ -14,14 +14,14 @@ function build_menu(a){
 			$('#sol').removeClass('hide');
 			$('#res').removeClass('hide');
 			$('#flu').removeClass('hide');
-			$('#reportes').removeClass('hide');
+			$('#reportes').addClass('hide');
 			$('#users-tab').removeClass('hide');
 		break;
 		case 2:
 			$('#index').removeClass('hide');
 			$('#sol').removeClass('hide');
 			$('#res').removeClass('hide');
-			$('#flu').removeClass('hide');
+			$('#flu').addClass('hide');
 			$('#reportes').removeClass('hide');
 		break;
 		case 3:
@@ -38,6 +38,10 @@ function build_menu(a){
 			$('#sol-box').addClass('hide');
 			$('#res-box').addClass('hide');
 			$('#btn_details').addClass('hide');
+		break;
+		case 5:
+			$('#index').removeClass('hide');
+			$('#res-box').removeClass('hide');
 		break;
 	}
 }
@@ -345,7 +349,7 @@ function registrar_usuario(){
 *	Función registrar_salida
 *	@return: registro de la salida del estudiante
 */
-function registrar_salida(cod,npc){
+function registrar_salida(cod,npc,obj){
 	bootbox.confirm("¿Está seguro que el estudiante con codigo "+npc+" es el que va a salir de la sala?", function(result) {
 	  if(result){
 	  	$.ajax({			
@@ -356,8 +360,7 @@ function registrar_salida(cod,npc){
 		success: function(data){		
 		if(data.res==true){		
 			growl("success",data.mes);
-			$("#codigo-s"+room).val('');
-			$("#pc-s"+room).val('');
+			$("#"+obj.id).closest('tr').fadeOut();
 		}
 		else{
 			growl("danger",data.mes)
@@ -371,7 +374,7 @@ function registrar_salida(cod,npc){
 *	Función registrar_atendido
 *	@return: registro de la salida del estudiante
 */
-function registrar_atendido(cod){
+function registrar_atendido(cod,obj){
 	bootbox.confirm("¿Está seguro?", function(result) {
 	  if(result){
 	  	$.ajax({			
@@ -381,7 +384,8 @@ function registrar_atendido(cod){
 		data: {id:cod },			
 		success: function(data){		
 		if(data.res==true){		
-			growl("success",data.mes)
+			growl("success",data.mes);
+			$("#"+obj.id).closest('tr').fadeOut();
 		}
 		else{
 			growl("danger",data.mes)
@@ -405,7 +409,30 @@ function borrar_registro(cod,npc,obj){
 		success: function(data){		
 		if(data.res==true){
 			growl("success",data.mes);
-			console.log($("#"+obj.id).closest('tr'));
+			$("#"+obj.id).closest('tr').fadeOut()
+		}
+		else{
+			growl("danger",data.mes)
+		}
+		}});
+	  }
+	});	
+}
+/* 
+*	Función borrar_usuario
+*	@return: eliminar registro de la bd
+*/
+function borrar_usuario(cod,obj){
+	bootbox.confirm("¿Está seguro que desea borrar este usuario?	", function(result) {
+	  if(result){
+	  	$.ajax({			
+		url: "../php/borrar_usuario.php",			
+		dataType: "json",			
+		type: "POST",			
+		data: {codigo:cod },			
+		success: function(data){		
+		if(data.res==true){
+			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut()
 		}
 		else{
@@ -419,7 +446,7 @@ function borrar_registro(cod,npc,obj){
 *	Función borrar_observacion
 *	@return: eliminar registro de la bd
 */
-function borrar_observacion(cod){
+function borrar_observacion(cod,obj){
 	bootbox.confirm("¿Está seguro que desea borrar esta observación?", function(result) {
 	  if(result){
 	  	$.ajax({			
@@ -429,9 +456,8 @@ function borrar_observacion(cod){
 		data: {id:cod},			
 		success: function(data){		
 		if(data.res==true){		
-			growl("success",data.mes)
-			$("#codigo-s"+room).val('');
-			$("#pc-s"+room).val('');
+			growl("success",data.mes);
+			$("#"+obj.id).closest('tr').fadeOut();
 		}
 		else{
 			growl("danger",data.mes)

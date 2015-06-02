@@ -171,6 +171,7 @@
                                                     <option value="2">Soporte</option>
                                                     <option value="3">Comunicaciones</option>
                                                     <option value="4">Monitor</option>
+                                                    <option value="5">Secretaria</option>
                                                 </select>
                                             </div>
                                             <div class="form-group input-group">
@@ -281,6 +282,9 @@
         $(document).ready(function() {
         var oTable = $('#datatables-observaciones').dataTable({responsive: true});
         get_usuarios(oTable);
+        setInterval( function () {
+            get_usuarios(oTable);
+        }, 5000 );
     });
     </script>
 
