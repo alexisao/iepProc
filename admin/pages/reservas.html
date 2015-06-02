@@ -190,11 +190,9 @@
         //console.log("dataset en solicitudes.html: "+dataSet)
         var oTable = $('#dataTables-example').dataTable({"processing": true});
         get_reservas(oTable);
-        /*$('#dataTables-example').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax": '../php/get_solicitudes.php'
-        });*/
+        setInterval( function () {
+            get_reservas(oTable);
+        }, 5000 );
     });
     </script>
 

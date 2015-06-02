@@ -27,11 +27,11 @@ $email .= "@correounivalle.edu.co";
 switch ($tipoSol) {
 	case 1:
 		$para="uno.choco@gmail.com";
-		$tipo_servicio = "reserva de sal&oacute;n de inform&aacute;tica";
+		$tipo_servicio = "reserva de sala de cómputo";
 		break;
 	case 2:
 		$para="dos.choco@gmail.com";
-		$tipo_servicio = "reserva de sal&oacute;n de conferencias";
+		$tipo_servicio = "reserva de salón de conferencias";
 		break;
 }
 

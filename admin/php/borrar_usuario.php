@@ -15,7 +15,7 @@ $con = new con();
 $con->connect();
 
 $response = new StdClass;
-$SQL="UPDATE tbl_users SET us_estado=99 WHERE us_id=".$codigo." AND us_id_del='".$_SESSION["ses_id"]."';";
+$SQL="UPDATE tbl_users SET us_estado=99, us_id_del='".$_SESSION["ses_id"]."' WHERE us_id=".$codigo.";";
 
 /*Consulta de estudiante inexistente*/
 $row_verif = mysql_query($SQL);

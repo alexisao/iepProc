@@ -34,7 +34,7 @@ if($existe){
 		$titulo = "Solicitud de Cambio de Contraseña - Plataforma IEP";
 		$mensaje = "<a href='#'>Cambiar contraseña</a>";
 	/* Fin */
-	/* Realizamos envío de correo con link para cambiar password 
+	/* Realizamos envío de correo con link para cambiar password */
 		if($fx->enviar_email($para, $titulo, $mensaje))
 		{	
 			//mail($fw_para, $fw_titulo, $fw_mensaje, $fw_cabeceras);
@@ -43,7 +43,7 @@ if($existe){
 		}else{
 			$response->msg = 'Hubo problemas al enviar su solicitud, favor intentar m&aacute;s tarde.';
 			$response->res = "false";
-		}*/
+		}
 }else{
 	$res = false;
 	$mes = "No existe ningun usuario asociado a este correo.";

@@ -12,7 +12,7 @@ $con->connect();
 $response = new StdClass;
 
 /*Consulta a la Bd*/
-$selectSQL ="SELECT * FROM tbl_reservas";
+$selectSQL ="SELECT * FROM tbl_reservas ORDER BY re_log_fecha DESC";
 
 $row_cons = mysql_query($selectSQL);
 

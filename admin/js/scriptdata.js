@@ -41,7 +41,12 @@ function build_menu(a){
 		break;
 		case 5:
 			$('#index').removeClass('hide');
-			$('#res-box').removeClass('hide');
+			$('#res').removeClass('hide');
+			$('#sol-box').addClass('hide');
+			$('#res-box').addClass('hide');
+			$('#flu-box').addClass('hide');
+			$('#obs-box').addClass('hide');
+			$('#btn_details').addClass('hide');
 		break;
 	}
 }
@@ -423,7 +428,7 @@ function borrar_registro(cod,npc,obj){
 *	@return: eliminar registro de la bd
 */
 function borrar_usuario(cod,obj){
-	bootbox.confirm("¿Está seguro que desea borrar este usuario?	", function(result) {
+	bootbox.confirm("¿Está seguro que desea borrar este usuario?", function(result) {
 	  if(result){
 	  	$.ajax({			
 		url: "../php/borrar_usuario.php",			
