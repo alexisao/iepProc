@@ -212,6 +212,9 @@
 
         var oTable = $('#datatables-example').dataTable({"processing": true, "order": [[ 1, "asc" ]]});
         get_solicitudes(oTable);
+        setInterval( function () {
+            get_solicitudes(oTable);
+        }, 5000 );
     });
     </script>
 

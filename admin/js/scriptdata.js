@@ -850,6 +850,7 @@ function cambiar_estado(id,estado,tipo){
 	if(data.res==true){					
 		growl("info",data.mes);
 		ocultarDetalle(id);
+		//recargar();
 	}
 	else{
 		growl("danger",data.mes);
