@@ -32,7 +32,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 			$opciones=$btn_2;
 		break;
 	}
-	$nombre = explode("@", $fila[10]);
+	$nombre = explode("@", $fila[11]);
 	$arrayData[]=array(
 				$fila[4],
 				'<button type="button" class="btn btn-primary"><i class="fa fa-home"></i>&nbsp;S'.$fila[2].'</button>',

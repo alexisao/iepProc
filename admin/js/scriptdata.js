@@ -14,7 +14,7 @@ function build_menu(a){
 			$('#sol').removeClass('hide');
 			$('#res').removeClass('hide');
 			$('#flu').removeClass('hide');
-			$('#reportes').addClass('hide');
+			$('#reportes').removeClass('hide');
 			$('#users-tab').removeClass('hide');
 		break;
 		case 2:
@@ -633,6 +633,52 @@ function growl(tipo,mes,reload){
 	}
 }
 /*
+*	function get_chardata_observaciones
+*	@return: array de conteos de observaciones
+*/
+function get_chardata_observaciones(opt){
+	switch(opt){
+		case 1:
+			$.ajax({            
+		    url: "../php/get_chartdata_obs.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Bar({
+				        element: 'morris-area-chart-observaciones',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['com','sop'],
+				        labels: ['Observaciones pendientes','Observaciones completadas'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+		case 2:
+			$.ajax({            
+		    url: "../php/get_chartdata_obs_dia.php?method=fetchdata",         
+		    dataType: "json",                       
+		    success: function(data){      
+		    		var month_data = data;
+				    Morris.Line({
+				        element: 'morris-area-chart-observaciones-diarias',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['obsol', 'obcom'],
+				        labels: ['Obs. completadas', 'Obs. pendientes'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        } 
+		    });
+		break;
+	}
+}
+/*
 *	function get_chardata_solicitudes
 *	@return: array de conteos de solicitudes de servicio técnico y comunicaciones
 */
@@ -738,6 +784,26 @@ function get_chardata_d_res(){
     		$("#btn_details").append("Total de reservas: "+r.total);
 		    Morris.Donut({
 		        element: 'morris-donut-chart-solicitudes',
+		        data: sol_data,
+		        resize: true
+		    });
+        } 
+    });
+}
+/*
+*	function get_chardata_d_obs
+*	@return: array de conteos de observaciones [Donut chart]
+*/
+function get_chardata_d_obs(){
+	
+	$.ajax({            
+    url: "../php/get_chartdata_donut_obs.php?method=fetchdata",         
+    dataType: "json",                       
+    success: function(r){      
+    		var sol_data = r.data;
+    		$("#btn_details").append("Total de observaciones: "+r.total);
+		    Morris.Donut({
+		        element: 'morris-donut-chart-observaciones',
 		        data: sol_data,
 		        resize: true
 		    });
