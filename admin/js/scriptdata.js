@@ -894,14 +894,23 @@ function get_detalle(id,tipo){
 	type: "POST",			
 	data: {id:id,tipo:tipo},			
 	success: function(data){		
-	if(data.res==true){					
-		$("#detalle-sol").html(data.mes);
+	if(data.res==true){	
+		switch(tipo){
+			case 3:
+				$(".modal-body").html(data.mes);
+			break;
+
+			default:
+				$("#detalle-sol").html(data.mes);
+			break;
+		}				
 	}
 	else{
 		growl("danger",data.mes);
 	}
 	}});
 }
+
 /* 
 *	Función cambiar_estado 
 *	@return: bool

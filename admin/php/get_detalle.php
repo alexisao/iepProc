@@ -23,11 +23,21 @@ switch ($tipo) {
 	case 2:
 		$selectSQL ="SELECT * FROM tbl_reservas WHERE re_id=".$id.";";
 		break;
+	case 3:
+		$selectSQL ="Select F.*, E.es_nombre, E.es_codigo, E.es_fecha_registro, U.us_id, U.us_email
+					FROM tbl_flujo_estudiantes AS F
+					INNER JOIN tbl_estudiantes AS E ON F.fe_es_codigo=E.es_codigo
+					INNER JOIN tbl_users AS U ON F.fe_monitor=U.us_id
+					WHERE F.fe_es_codigo = ".$id." AND
+					F.fe_Estado<10";
+		break;
 }
 
 
 $row_cons = mysql_query($selectSQL);
 $hideStr = 'class="hide"';
+$i=1;
+$tbody="";
 
 while ($fila = mysql_fetch_array($row_cons)) { 
 
@@ -65,10 +75,28 @@ while ($fila = mysql_fetch_array($row_cons)) {
 		include("template_detalle_solicitudes.php");
 		$res = true;
 		$mes = $htmlStr;
+	}elseif ($tipo==3) {
+		$name=$fila[10];
+		$created=$fila[12];
+		$total=$i;
+		if($fila[5]===NULL){$salida='<span class="label label-success">En Sala</span>';}else{$salida=$fila[5];}
+		$tbody.='<tr>
+                    <td>'.$i++.'</td>
+                    <td>'.$fila[6].'</td>
+                    <td>'.$fila[2].' - '.$fila[3].'</td>
+                    <td>'.$salida.'</td>
+                    <td>'.$fila[14].'</td>
+               	   </tr>';			
 	}else{
 		$res=false;
 		$mes="Hubo un error al realizar la consulta, por favor comuniquese con el administrador del sistema y notifiquele el error";
 	}
+}
+
+if($tipo==3){
+	include("template_detalle_registrados.php");
+	$res = true;
+	$mes = $htmlStr;
 }
 
 $response->res = $res;
