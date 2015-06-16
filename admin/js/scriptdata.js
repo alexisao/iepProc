@@ -830,6 +830,36 @@ function get_chardata_d_sol(){
         } 
     });
 }
+
+/*
+*	function get_flujoFranjas();
+*	@return: array de reporte de franjas por sala
+*/
+function get_flujoFranjas(sala){
+	$.ajax({            
+    url: "../php/get_chartdata_flx.php?method=fetchdata",         
+    dataType: "json",
+    type: "POST",			
+	data: {sala:sala},                       
+    success: function(data){
+			$("#s"+sala).html("<br>"+data.cajas);
+    		
+    		for (var i = 0; i < data.cantidad.length; i++) {
+    			/*carga de datos en los gráficos*/
+    			Morris.Line({
+			        element: 'morris-chart-'+i,
+			        data: month_data,
+			        xkey: 'period',
+			        ykeys: ['sala1', 'sala2', 'sala3'],
+			        labels: ['sala1', 'sala2', 'sala3'],
+			        pointSize: 2,
+			        hideHover: 'auto',
+			        resize: true
+			    });
+    		};
+        } 
+    });
+}
 /*
 *	function get_chardata
 *	@return: array de ingresos a la sala en la semana
@@ -933,6 +963,15 @@ function cambiar_estado(id,estado,tipo){
 	}});
 }
 
+$(document).on("click", "#ps1", function(event){
+	get_flujoFranjas(1);
+});
+$(document).on("click", "#ps2", function(event){
+	get_flujoFranjas(2);
+});
+$(document).on("click", "#ps3", function(event){
+	get_flujoFranjas(3);
+});
 $(document).on("click", "#llegada_sala1", function(event){
 	registrar_llegada(1);
 });

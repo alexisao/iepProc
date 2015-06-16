@@ -12,10 +12,10 @@ $con->connect();
 $response = new StdClass;
 
 /*Consulta a la Bd*/
-$selectSQL1 ="SELECT * FROM tbl_servicios";
-$selectSQL2 ="SELECT * FROM tbl_reservas";
-$selectSQL3 ="SELECT * FROM tbl_flujo_estudiantes";
-$selectSQL4 ="SELECT * FROM tbl_observaciones";
+$selectSQL1 ="SELECT * FROM tbl_servicios WHERE se_estado<5";
+$selectSQL2 ="SELECT * FROM tbl_reservas WHERE re_estado<5";
+$selectSQL3 ="SELECT * FROM tbl_flujo_estudiantes WHERE fe_estado=1";
+$selectSQL4 ="SELECT * FROM tbl_observaciones WHERE ob_estado = 1";
 
 $row_sol = mysql_query($selectSQL1);
 $row_res = mysql_query($selectSQL2);
