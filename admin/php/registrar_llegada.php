@@ -20,7 +20,7 @@ $con->connect();
 $response = new StdClass;
 
 /*Consulta de estudiante inexistente*/
-$row_verif = mysql_query("SELECT COUNT(*) FROM tbl_estudiantes WHERE es_codigo=".$codigo.";");
+$row_verif = mysql_query("SELECT COUNT(*) FROM tbl_estudiantes WHERE es_codigo=".$codigo." AND es_estado <> 99;");
 $rows = mysql_fetch_array($row_verif);
 if($rows[0]==0){
 	$res=false;

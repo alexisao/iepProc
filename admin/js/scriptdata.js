@@ -400,6 +400,30 @@ function registrar_atendido(cod,obj){
 	});	
 }
 /* 
+*	Función borrar_estudiante
+*	@return: eliminar registro de la bd
+*/
+function borrar_estudiante(cod,npc,obj){
+	bootbox.confirm("¿Está seguro que desea borrar al estudiante con codigo "+npc+"?", function(result) {
+	  if(result){
+	  	$.ajax({			
+		url: "../php/borrar_estudiante.php",			
+		dataType: "json",			
+		type: "POST",			
+		data: {id:cod },			
+		success: function(data){		
+		if(data.res==true){
+			growl("success",data.mes);
+			$("#"+obj.id).closest('tr').fadeOut()
+		}
+		else{
+			growl("danger",data.mes)
+		}
+		}});
+	  }
+	});	
+}
+/* 
 *	Función borrar_registro
 *	@return: eliminar registro de la bd
 */
