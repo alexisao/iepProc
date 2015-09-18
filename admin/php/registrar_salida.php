@@ -9,6 +9,8 @@ if(!$fun->isAjax()){header ("Location: ../pages/index.html");}
 /*recibimos variables*/
 $codigo = $_POST['codigo'];
 $id = $_POST['id'];
+
+date_default_timezone_set('America/Bogota');
 $hora_salida=date('H:i:s');
 
 
