@@ -37,11 +37,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    div.panel-body{
+    	min-height: 1px;
+    }
+    </style>
 
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -129,14 +133,14 @@
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a id="ps1" href="#s1" aria-controls="home" role="tab" data-toggle="tab">Sala 1</a></li>
-                    <li role="presentation"><a href="#s2" id="ps2" aria-controls="profile" role="tab" data-toggle="tab">Sala 2</a></li>
-                    <li role="presentation"><a href="#s3" id="ps3" aria-controls="messages" role="tab" data-toggle="tab">Sala 3</a></li>
+                    <li role="presentation"><a href="#s2" id="ps2" aria-controls="home" role="tab" data-toggle="tab">Sala 2</a></li>
+                    <li role="presentation"><a href="#s3" id="ps3" aria-controls="home" role="tab" data-toggle="tab">Sala 3</a></li>
                   </ul>
                   <!-- Tab panes -->
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="s1"><img src="../img/contruccion.png"></div>
-                    <div role="tabpanel" class="tab-pane" id="s2"><img src="../img/contruccion.png"></div>
-                    <div role="tabpanel" class="tab-pane" id="s3"><img src="../img/contruccion.png"></div>
+                    <div role="tabpanel" class="tab-pane active" id="s1"><br></div>
+                    <div role="tabpanel" class="tab-pane" id="s2"><br></div>
+                    <div role="tabpanel" class="tab-pane" id="s3"><br></div>
                   </div>
                 </div>
             </div>
@@ -170,11 +174,11 @@
     <script src="../js/scriptdata.js"></script>
     <script src="../js/scriptFlujo.js"></script>
     <script type="text/javascript">
+     $(document).ready(function(){
         get_user("#fld-email");
-        //get_flujoFranjas(1);
-    </script>
-
-    
+        get_flujoFranjas(1);
+     });
+    </script>    
 
 </body>
 

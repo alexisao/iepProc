@@ -864,23 +864,22 @@ function get_flujoFranjas(sala){
     url: "../php/get_chartdata_flx.php?method=fetchdata",         
     dataType: "json",
     type: "POST",			
-	data: {sala:sala},                       
+	data: {s:sala},                       
     success: function(data){
-			$("#s"+sala).html("<br>"+data.cajas);
-    		
-    		for (var i = 0; i < data.cantidad.length; i++) {
+    		$("#s"+sala).empty();
+    		$("#s"+sala).html(data.cajas);
     			/*carga de datos en los gráficos*/
-    			Morris.Line({
-			        element: 'morris-chart-'+i,
-			        data: month_data,
-			        xkey: 'period',
-			        ykeys: ['sala1', 'sala2', 'sala3'],
-			        labels: ['sala1', 'sala2', 'sala3'],
-			        pointSize: 2,
-			        hideHover: 'auto',
-			        resize: true
+			for (var i = 0; i < data.cantidad; i++) {
+    			//console.log('['+JSON.stringify(data.franjas["f"+(i+1)])+']');
+    			Morris.Bar({
+			        element: 's'+sala+'-morris-chart-'+i,
+			        data: JSON.parse('['+JSON.stringify(data.franjas["f"+(i+1)])+']'),
+			          xkey: 'turno',
+					  ykeys: ['1', '2', '3', '4', '5'],
+					  labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'],
+					  resize:true
 			    });
-    		};
+			};
         } 
     });
 }

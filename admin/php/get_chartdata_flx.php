@@ -13,23 +13,24 @@ $con->connect();
 /*Creación de cajas para las gráficas*/
 $response = new StdClass;
 $cajas = array();
-$boxes = crearCajas();
 
 /*datos que se cargarán en las gráficas*/
 /*Datos del semestre*/
-$s_inicio="2015-02-02";
-$s_fin="2015-06-30";
+$s_inicio="2015-06-02";
+$s_fin="2016-03-30";
 $tinicio=" 00:00:00";
 $tfinal=" 23:59:59";
-$sala = $_POST["sala"];
+$sala = $_POST["s"];
+
+$boxes = crearCajas($sala);
 
 /*definimos arreglos resultante*/
-$f1 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
-$f2 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
-$f3 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
-$f4 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
-$f5 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
-$f6 = array('1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f1 = array('turno' => "Turno 1", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f2 = array('turno' => "Turno 2", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f3 = array('turno' => "Turno 3", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f4 = array('turno' => "Turno 4", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f5 = array('turno' => "Turno 5", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
+$f6 = array('turno' => "Turno 6", '1' => 0,'2' => 0,'3' => 0,'4' => 0,'5' => 0);
 
 /* verificamos si estamos dentro del semestre */
 $ini_semestre=date("Y-m-d",strtotime($s_inicio));
@@ -43,10 +44,10 @@ while($fin_semestre > $ini_semestre){
     $int_dia=date('N', strtotime($ini_semestre));
     if(($int_dia==6) || ($int_dia==7)){}
     else{
-    	echo "<br> -> fecha actual: ".$ini_semestre." (".$int_dia.")";
-    	echo "<br>realizamos consulta:";
+    	//echo "<br> -> fecha actual: ".$ini_semestre." (".$int_dia.")";
+    	//echo "<br>realizamos consulta:";
     	$qry_date=date('Y-m-d', strtotime($ini_semestre));
-    	echo "<br>fecha consulta: ".$qry_date;
+    	//echo "<br>fecha consulta: ".$qry_date;
     	/*Franjas*/
     	for ($i=1; $i <= 6; $i++) { 
     		switch ($i) {
@@ -100,33 +101,33 @@ while($fin_semestre > $ini_semestre){
 			switch ($int_dia) {
 				case 1:
 					/*traemos valor que tiene ese dia en la franja*/
-					echo"<br> Franja ".$i." en el dia ".$int_dia.":";
+					//echo"<br> Franja ".$i." en el dia ".$int_dia.":";
 					$new_val=$franja_temp[1]+$val["Total"];
-					echo $franja_temp[1]."// nuevo valor: ".$new_val;
+					//echo $franja_temp[1]."// nuevo valor: ".$new_val;
 					break;
 				case 2:
 					/*traemos valor que tiene ese dia en la franja*/
-					echo"<br> Franja ".$i." en el dia ".$int_dia.":";
+					//echo"<br> Franja ".$i." en el dia ".$int_dia.":";
 					$new_val=$franja_temp[2]+$val["Total"];
-					echo $franja_temp[2]."// nuevo valor: ".$new_val;
+					//echo $franja_temp[2]."// nuevo valor: ".$new_val;
 					break;
 				case 3:
 					/*traemos valor que tiene ese dia en la franja*/
-					echo"<br> Franja ".$i." en el dia ".$int_dia.":";
+					//echo"<br> Franja ".$i." en el dia ".$int_dia.":";
 					$new_val=$franja_temp[3]+$val["Total"];
-					echo $franja_temp[3]."// nuevo valor: ".$new_val;
+					//echo $franja_temp[3]."// nuevo valor: ".$new_val;
 					break;
 				case 4:
 					/*traemos valor que tiene ese dia en la franja*/
-					echo"<br> Franja ".$i." en el dia ".$int_dia.":";
+					//echo"<br> Franja ".$i." en el dia ".$int_dia.":";
 					$new_val=$franja_temp[4]+$val["Total"];
-					echo $franja_temp[4]."// nuevo valor: ".$new_val;
+					//echo $franja_temp[4]."// nuevo valor: ".$new_val;
 					break;
 				case 5:
 					/*traemos valor que tiene ese dia en la franja*/
-					echo"<br> Franja ".$i." en el dia ".$int_dia.":";
+					//echo"<br> Franja ".$i." en el dia ".$int_dia.":";
 					$new_val=$franja_temp[5]+$val["Total"];
-					echo $franja_temp[5]."// nuevo valor: ".$new_val;
+					//echo $franja_temp[5]."// nuevo valor: ".$new_val;
 					break;
 				
 				default:
@@ -137,22 +138,22 @@ while($fin_semestre > $ini_semestre){
 			/*Cargamos resultado en el arreglo de la franja a la que corresponde el resultado*/
 			switch ($i) {
 				case 1:
-					$f1[$int_dia]=$new_val;
+					$f1[$int_dia] = $new_val;
 					break;
 				case 2:
-					$f2[$int_dia]=$new_val;
+					$f2[$int_dia] = $new_val;
 					break;
 				case 3:
-					$f3[$int_dia]=$new_val;
+					$f3[$int_dia] = $new_val;
 					break;
 				case 4:
-					$f4[$int_dia]=$new_val;
+					$f4[$int_dia] = $new_val;
 					break;
 				case 5:
-					$f5[$int_dia]=$new_val;
+					$f5[$int_dia] = $new_val;
 					break;
 				case 6:
-					$f6[$int_dia]=$new_val;
+					$f6[$int_dia] = $new_val;
 					break;
 				
 				default:
@@ -166,19 +167,19 @@ while($fin_semestre > $ini_semestre){
 		$r1=mysql_query($qry,$con->connect());
 		$c1=mysql_num_rows($r1);*/
 	}
-	echo"<br> ";
+	/*echo"<pre> ";
 	var_dump($f1);
-	echo"<br> ";
+	echo"</pre><pre>";
 	var_dump($f2);
-	echo"<br> ";
+	echo"</pre><pre>";
 	var_dump($f3);
-	echo"<br> ";
+	echo"</pre><pre>";
 	var_dump($f4);
-	echo"<br> ";
+	echo"</pre><pre>";
 	var_dump($f5);
-	echo"<br> ";
+	echo"</pre><pre>";
 	var_dump($f6);
-	echo"<br> ";
+	echo"</pre>";*/
 
 $temp_date = strtotime('+1 day',strtotime($ini_semestre));
 $ini_semestre = date("Y-m-d", $temp_date);
@@ -200,6 +201,15 @@ else{
 
 
 $response->cajas = $boxes;
+$response->franjas = [
+						"f1"=> $f1,
+						"f2"=> $f2,
+						"f3"=> $f3,
+						"f4"=> $f4,
+						"f5"=> $f5,
+						"f6"=> $f6,
+					 ];
+
 $response->cantidad = 6;
 
 echo json_encode($response);

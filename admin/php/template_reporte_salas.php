@@ -22,7 +22,7 @@ function buildBox($head,$id){
 return $panel;
 }
 
-function crearCajas(){
+function crearCajas($s){
 	$p ="";
 	$arrayFranjas = array(
 		'f1' => "08:00:00#09:59:59", 
@@ -35,7 +35,7 @@ function crearCajas(){
 	$i=0;
 	foreach ($arrayFranjas as $v) {
 		$h="Franja de ".$v;
-		$id="morris-chart-".$i;
+		$id="s".$s."-morris-chart-".$i;
 		$p.=buildBox($h, $id);
 	    $i++;
 	}
