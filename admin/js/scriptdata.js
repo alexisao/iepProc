@@ -882,6 +882,30 @@ function get_flujoFranjas(sala){
 			};
         } 
     });
+    get_uxm(sala);
+}
+/*
+*	function get_uxm
+*	@return: array de ingresos a la sala en la semana
+*/
+function get_uxm(){
+	$.ajax({            
+    url: "../php/get_chartdata_uxm.php?method=fetchdata",         
+    dataType: "json",                       
+    success: function(data){      
+    		var month_data = data;
+		    Morris.Line({
+		        element: 'morris-area-chart',
+		        data: month_data,
+		        xkey: 'period',
+		        ykeys: ['sala1', 'sala2', 'sala3'],
+		        labels: ['sala1', 'sala2', 'sala3'],
+		        pointSize: 2,
+		        hideHover: 'auto',
+		        resize: true
+		    });
+        } 
+    });
 }
 /*
 *	function get_chardata
