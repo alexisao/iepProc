@@ -167,19 +167,7 @@ while($fin_semestre > $ini_semestre){
 		$r1=mysql_query($qry,$con->connect());
 		$c1=mysql_num_rows($r1);*/
 	}
-	/*echo"<pre> ";
-	var_dump($f1);
-	echo"</pre><pre>";
-	var_dump($f2);
-	echo"</pre><pre>";
-	var_dump($f3);
-	echo"</pre><pre>";
-	var_dump($f4);
-	echo"</pre><pre>";
-	var_dump($f5);
-	echo"</pre><pre>";
-	var_dump($f6);
-	echo"</pre>";*/
+
 
 $temp_date = strtotime('+1 day',strtotime($ini_semestre));
 $ini_semestre = date("Y-m-d", $temp_date);

@@ -28,12 +28,14 @@ return true;
 *  Función Login
 */
 function login(){
+	var email = $('#email').val();
+	email += "@correounivalle.edu.co";
 $.ajax({			
 	url: "../php/login.php",			
 	dataType: "json",			
 	type: "POST",			
 	data: { 
-		user: $('#email').val(),
+		user: email,
 		pass: $('#password').val()
 	},			
 	success: function(data){		
@@ -69,3 +71,8 @@ $(document).on("click", "#js-enviar", function(event){
 		alert("[ERROR]: Campos son obligatorios.");
 	}	
 });
+
+
+/*
+*	Validación de @ en email al loguearse
+*/

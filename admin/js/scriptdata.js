@@ -338,7 +338,8 @@ function registrar_usuario(){
 				},			
 			success: function(data){		
 			if(data.res==true){		
-				growl("success",data.mes)
+				growl("success",data.mes);
+				$('#form-nuevoest').trigger("reset");
 			}
 			else{
 				growl("danger",data.mes)
@@ -591,6 +592,12 @@ function logout(){
 }
 function recargar(){
 	location.reload();
+}
+function refresh(fn){
+	var time = 2000;
+	setInterval( function () {
+	    fn
+	}, time);
 }
 /*
 *	RefreshTable function 
@@ -860,6 +867,12 @@ function get_chardata_d_sol(){
 *	@return: array de reporte de franjas por sala
 */
 function get_flujoFranjas(sala){
+	$("#s1").empty();
+	$("#s2").empty();
+	$("#s3").empty();
+	$("#s1_mes").empty();
+	$("#s2_mes").empty();
+	$("#s3_mes").empty();
 	$.ajax({            
     url: "../php/get_chartdata_flx.php?method=fetchdata",         
     dataType: "json",
@@ -882,24 +895,28 @@ function get_flujoFranjas(sala){
 			};
         } 
     });
-    get_uxm(sala);
+    get_flx_mes(sala);
 }
 /*
-*	function get_uxm
-*	@return: array de ingresos a la sala en la semana
+*	function get_flx_mes
+*	@return: array de ingresos a la sala filtrados por mes
 */
-function get_uxm(){
+function get_flx_mes(s){
+	var months = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 	$.ajax({            
-    url: "../php/get_chartdata_uxm.php?method=fetchdata",         
-    dataType: "json",                       
+    url: "../php/get_chartdata_fxm.php?method=fetchdata",         
+    dataType: "json",  
+    type: "POST",
+    data: {sala:s},                       
     success: function(data){      
     		var month_data = data;
-		    Morris.Line({
-		        element: 'morris-area-chart',
+		    Morris.Area({
+		        element: 's'+s+'_mes',
 		        data: month_data,
-		        xkey: 'period',
-		        ykeys: ['sala1', 'sala2', 'sala3'],
-		        labels: ['sala1', 'sala2', 'sala3'],
+		        xkey: 'Mes',
+			    ykeys: ['Conteo'],
+			    labels: ['Conteo'],
+			    xLabelFormat: function (x) { return months[x.getMonth()]; },
 		        pointSize: 2,
 		        hideHover: 'auto',
 		        resize: true
@@ -944,6 +961,25 @@ function get_chardata_d(){
 		    });
         } 
     });
+}
+/*
+*	function download
+*	@return: descarga contenido a formato pdf
+*/
+
+function descargarReporte(id){
+	var doc = new jsPDF();
+	var specialElementHandlers = {
+	    '#editor': function (element, renderer) {
+	        return true;
+	    }
+	};
+
+	doc.fromHTML($('#report_s'+id).html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('Reporte.pdf');
 }
 /*
 *	function mostrarDetalle
