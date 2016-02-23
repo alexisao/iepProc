@@ -44,7 +44,7 @@ class funciones{
 	    {return false;}
 	}
 	function get_cant_students_x_h($fecha,$franja){
-		
+		$selectSQL ="SELECT count(`fe_id`) AS conteo FROM `tbl_flujo_estudiantes` WHERE `fe_sala`=1 AND `fe_hora_entrada` BETWEEN '2015-06-01 00:00:00' AND '2016-02-29 23:59:59'";
 	}	
 
 }
