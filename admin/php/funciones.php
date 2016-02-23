@@ -42,6 +42,9 @@ class funciones{
 	    {return true;}
 	    else
 	    {return false;}
+	}
+	function get_cant_students_x_h($fecha,$franja){
+		
 	}	
 
 }
