@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Solicitud de Servicios</title>
+    <title>Solicitud de Servicios</title> 
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <div class="container">    
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form role="form" id="contact-form">
+        <form role="form" id="servicios-form">
           <hr class="colorgraph">
           
             <div class="form-group">
@@ -58,7 +58,7 @@
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="oficina" id="oficina" class="form-control input-lg" placeholder="Oficina" tabindex="6"></div>
               <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telefono" tabindex="6"></div>
-              <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="ext" id="ext" class="form-control input-lg" placeholder="Extensión" tabindex="7"></div>
+              <div class="col-xs-3 col-sm-3 col-md-3"><input type="text" name="ext" id="ext" value="0" class="form-control input-lg" placeholder="Extensión" tabindex="7"></div>
             </div><br>
 
             <div class="form-group">
@@ -97,7 +97,7 @@
           <hr class="colorgraph">
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <button type="button" class="btn btn-primary btn-block btn-lg js-enviar">Enviar</button><i class="icon-search icon-white"></i>
+              <button type="button" id="js_enviar" class="btn btn-primary btn-block btn-lg js-enviar">Enviar</button><i class="icon-search icon-white"></i>
             </div>
           
           </div>

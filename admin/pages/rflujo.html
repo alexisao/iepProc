@@ -123,7 +123,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-bar-chart-o fa-fw" style="color:"></i>Flujo en Salas</h1>
+                    <h1 class="page-header"><i class="fa fa-bar-chart-o fa-fw" style="color:"></i>Estadisticas de Reporte de Planillas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,47 +138,43 @@
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="cs1"><br>
-                        <div class="col-lg-12">
-                            <ul class="nav navbar-top-links navbar-right">
-                                <li><a id="btn-export" onClick="descargarReporte(1)" title="Exportar a PDF"><i class="fa fa-file-pdf-o fa-fw"></i>Descargar PDF</a></li>
-                                <!-- /.dropdown -->
-                            </ul>
-                        </div>
-                        <div id="report_s1">
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Franja Horaria</small></h1>
-                            <div id="s1"></div>
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Mes</small></h1>
-                            <div id="s1_mes"></div>
-                        </div>
+                    	<div class="well well-small" id="combo_mes">
+                    		
+                    	</div>
+						<!--Collapse -->
+						<div class="well well-small pointer" data-toggle="collapse" data-target="#planilla_mes_s1">
+						  <a href="#" onclick="go_to('planilla_mes_s1','planilla',1)"><i class="fa fa-bars"></i>   Registro del mes</a>
+						</div>						 
+						<div id="planilla_mes_s1" class="collapse out">
+						</div>
+						<div class="well" data-toggle="collapse" data-target="#r1_2">
+						  <a href="#"><i class="fa fa-bars"></i>   Flujo de estudiantes por horas</a>
+						</div>						 
+						<div id="r1_2" class="collapse out">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.
+
+							Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.
+
+							Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</div>
+						<div class="well" data-toggle="collapse" data-target="#r3">
+						  <a href="#"><i class="fa fa-bars"></i>   Flujo de estudiantes por día (General)</a>
+						</div>						 
+						<div id="r3" class="collapse out">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.
+
+							Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.
+
+							Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</div>
+						<div class="well" data-toggle="collapse" data-target="#r4">
+						  <a href="#"><i class="fa fa-bars"></i>   Flujo de estudiantes por día (Detallado)</a>
+						</div>						 
+						<div id="r4" class="collapse out">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.
+
+							Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.
+
+							Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</div>
+						<!-- -->
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="cs2"><br>
-                        <div class="col-lg-12">
-                            <ul class="nav navbar-top-links navbar-right">
-                                <li><a id="btn-export" onClick="descargarReporte(2)" title="Exportar a PDF"><i class="fa fa-file-pdf-o fa-fw"></i>Descargar PDF</a></li>
-                                <!-- /.dropdown -->
-                            </ul>
-                        </div>
-                        <div id="report_s2">
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Franja Horaria</small></h1>
-                            <div id="s2"></div>
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Mes</small></h1>
-                            <div id="s2_mes"></div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="cs3"><br>
-                        <div class="col-lg-12">
-                            <ul class="nav navbar-top-links navbar-right">
-                                <li><a id="btn-export" onClick="descargarReporte(3)" title="Exportar a PDF"><i class="fa fa-file-pdf-o fa-fw"></i>Descargar PDF</a></li>
-                                <!-- /.dropdown -->
-                            </ul>
-                        </div>
-                        <div id="report_s3">
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Franja Horaria</small></h1>
-                            <div id="s3"></div>
-                            <h1 class="page-header"><small>Flujo de Estudiantes por Mes</small></h1>
-                            <div id="s3_mes"></div>
-                        </div>
-                    </div>
+                    <div role="tabpanel" class="tab-pane" id="cs2"><br></div>
+                    <div role="tabpanel" class="tab-pane" id="cs3"><br></div>
                   </div>
                 </div>
             </div>
@@ -193,6 +189,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/js/transition.js"></script>
+    <script src="../bower_components/bootstrap/js/collapse.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
@@ -210,14 +208,13 @@
 
 
     <!-- Custom Scripts -->
-    <script src="../js/jsPdf.js"></script>
     <script src="../js/scriptdata.js"></script>
     <script src="../js/scriptFlujo.js"></script>
     <script type="text/javascript">
      $(document).ready(function(){
         get_user("#fld-email");
-        get_flujoFranjas(1);
-
+        //get_flujoFranjas(1); linea que hace el llamado a las gráficas
+        cbx_mes();
      });
     </script>    
 

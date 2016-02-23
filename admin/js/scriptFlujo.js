@@ -58,3 +58,54 @@ function get_chardata_solicitudes(opt){
 		break;
 	}
 }
+
+/*
+*	CONJUNTO DE FUNCIONES ENCARGADAS DE GENERAR LOS DATOS PARA LOS REPORTES DE FLUJO MENSUAL
+*/
+
+/*
+*	function get_planilla(sala,mes,contenedor)
+*	@return: Planilla general de flujo mensual
+*/
+function get_planilla(s,m,c){
+	$.ajax({            
+		    url: "../php/get_planilla.php?method=fetchdata",         
+		    dataType: "json",			
+			type: "POST",  
+		    data: {
+		    	s:s, 
+		    	m:m
+		    },                     
+		    success: function(r){      
+		    	$("#"+c).html(r.table);
+		        } 
+		    });
+}
+/*
+*	function go_to
+*   objetivo: carga contenidos a pedido
+*	@return: contenido solicitado
+*/
+function go_to(cont,req,sala){
+	var mes = $("#mes").val();
+	switch(req){
+		case "planilla":
+			get_planilla(sala,mes,cont);
+		break;
+	}
+}
+/*
+*	function cbx_mes
+*   objetivo: carga combo con los meses del semestre
+*	@return: combo con meses
+*/
+function cbx_mes(){
+	$.ajax({            
+		    url: "../php/get_cbx_meses_semestre.php?method=fetchdata",         
+		    dataType: "json",			
+			type: "POST",                     
+		    success: function(resp){      
+		    	$("#combo_mes").html(resp.res);
+		        } 
+		    });
+}

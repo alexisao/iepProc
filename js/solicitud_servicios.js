@@ -1,5 +1,5 @@
 function validarCampos(){
-var $inputs = $('#contact-form :input'); // Obtenemos los inputs de nuestro formulario
+var $inputs = $('#servicios-form :input'); // Obtenemos los inputs de nuestro formulario
 var formvalido = true; // Para saber si el form esta vacio 
  
 $inputs.each(function() {  // Recorremos los inputs del formulario (uno a uno)
@@ -109,9 +109,10 @@ function mostrarVariablesGet()
 $(document).ready(function(){
 	mostrarVariablesGet();
 })
-$(document).on("click", ".js-enviar", function(event){
+$("#js_enviar").on("click", function(event){
+	alert("hi");
 	$('.js-enviar').attr('disabled',true);
-	if(validarCampos() && validarEmail($("#email").val()) && validarTipoSol($("#tipoSol").val())){
+	if(validarEmail($("#email").val()) && validarTipoSol($("#tipoSol").val())){
 		$.ajax({  
 				url: "mods/solicitud_servicios.php",  
 				type: "POST",  
@@ -133,6 +134,7 @@ $(document).on("click", ".js-enviar", function(event){
 					success: function(response) {  
 						if(response.res==false)  
 						{  
+							$('#servicios-form').trigger("reset");
 							alert(response.msg);  
 						}  
 						else{  

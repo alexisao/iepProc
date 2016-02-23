@@ -203,7 +203,7 @@ function get_registrados(oTable){
 	url: "../php/get_registrados.php?method=fetchdata",			
 	dataType: "json",						
 	success: function(data){		
-		oTable.fnClearTable();
+		//oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
 			data[i][0],
@@ -257,7 +257,13 @@ function registrar_estudiante(){
 		$("#codigo").val('');
 		$("#plan").val('');
 		$("#nombre").val('');
-		location.reload();
+		var oTable = $('#datatables-registrados').dataTable({
+            responsive: true,
+            language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
+        get_registrados(oTable);
 	}
 	else{
 		growl("danger",data.mes)
@@ -310,6 +316,13 @@ function registrar_observacion(){
 		growl("success",data.mes)
 		$("#pc").val('');
 		$("#obs").val('');
+		var oTable = $('#datatables-observaciones').dataTable({
+            responsive: true,
+            language: {
+                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+            }
+        });
+        get_observaciones(oTable);
 	}
 	else{
 		growl("danger",data.mes)
@@ -340,6 +353,8 @@ function registrar_usuario(){
 			if(data.res==true){		
 				growl("success",data.mes);
 				$('#form-nuevoest').trigger("reset");
+				var oTable = $('#datatables-observaciones').dataTable({responsive: true});
+        		get_usuarios(oTable);
 			}
 			else{
 				growl("danger",data.mes)
@@ -961,25 +976,6 @@ function get_chardata_d(){
 		    });
         } 
     });
-}
-/*
-*	function download
-*	@return: descarga contenido a formato pdf
-*/
-
-function descargarReporte(id){
-	var doc = new jsPDF();
-	var specialElementHandlers = {
-	    '#editor': function (element, renderer) {
-	        return true;
-	    }
-	};
-
-	doc.fromHTML($('#report_s'+id).html(), 15, 15, {
-        'width': 170,
-            'elementHandlers': specialElementHandlers
-    });
-    doc.save('Reporte.pdf');
 }
 /*
 *	function mostrarDetalle

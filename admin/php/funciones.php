@@ -42,6 +42,32 @@ class funciones{
 	    {return true;}
 	    else
 	    {return false;}
+	}
+
+
+	function get_total_students_x_h($sala, $f,$h_i,$h_f){
+		$con = new con();
+		$con->connect();
+
+		list($a, $m, $d)= split('-', $f);
+		$fecha = $a."-".$m."-";
+
+		$query="SELECT COUNT(fe_id) AS conteo FROM tbl_flujo_estudiantes WHERE fe_sala=".$sala." AND fe_hora_entrada BETWEEN '".$h_i."' AND '".$h_f."' AND fe_log_fecha BETWEEN '".$fecha."01 00:00:00' AND '".$fecha."31 23:59:59'";
+		echo $query."<br>";
+		$rq = mysql_query($query);
+		$fq = mysql_fetch_array($rq);
+		return $fq[0];
+	}	 
+
+	function get_cant_students_x_h($sala, $fecha,$h_i,$h_f){
+		$con = new con();
+		$con->connect();
+
+		$query="SELECT COUNT(fe_id) AS conteo FROM tbl_flujo_estudiantes WHERE fe_sala=".$sala." AND fe_hora_entrada BETWEEN '".$h_i."' AND '".$h_f."' AND fe_log_fecha BETWEEN '".$fecha." 00:00:00' AND '".$fecha." 23:59:59'";
+		//echo $query."<br>";
+		$rq = mysql_query($query);
+		$fq = mysql_fetch_array($rq);
+		return $fq[0];
 	}	
 
 }
