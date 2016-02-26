@@ -24,7 +24,7 @@ $sem_f = $semestre_fin;
 $arr_dias_semana=array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
 
 					
-$html='<table class="table table-hover" id="planilla">';
+$html='<table class="table table-hover" id="planilla_sala_'.$sala.'">';
 $html.='
 	<thead>
 		<th></th>
@@ -67,7 +67,7 @@ for($i=$sem_i;$i<=$sem_f;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
 	$html.='</tr>';
 }
 
-	/*$a = $fun->get_total_students_x_h($sala, $i,"08:00:00","09:59:59");
+	$a = $fun->get_total_students_x_h($sala, $i,"08:00:00","09:59:59");
 	$b = $fun->get_total_students_x_h($sala, $i,"10:00:00","11:59:59");
 	$c = $fun->get_total_students_x_h($sala, $i,"13:00:00","14:59:59");
 	$d = $fun->get_total_students_x_h($sala, $i,"15:00:00","16:59:59");
@@ -82,7 +82,7 @@ for($i=$sem_i;$i<=$sem_f;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
 	$html.='<td>'.$d.'</td>';
 	$html.='<td>'.$e.'</td>';
 	$html.='<td>'.$f.'</td>';
-	$html.='<td>'.$t_col.'</td>';*/
+	$html.='<td>'.$t_col.'</td>';
 /*
 $html.='<tr>';
 $html.='<td>'.$mes.'</td>';
@@ -105,6 +105,7 @@ $html.='
 		<th>15:00 - 16:59</th>
 		<th>17:00 - 18:59</th>
 		<th>19:00 - 20:59</th>
+		<th></th>
 	</tfoot>
 ';
 $html.='</table>';
