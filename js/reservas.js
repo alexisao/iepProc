@@ -174,6 +174,10 @@ $(document).on("click", ".js-enviar", function(event){
 							$('.js-enviar').attr('disabled',false);
 						}  
 						else{  
+							var inputs = $('#contact-form :input');
+							inputs.each(function (){
+								$(this).empty();
+							})
 							alert(response.msg);
 							$('.js-enviar').attr('disabled',false);
 						}   

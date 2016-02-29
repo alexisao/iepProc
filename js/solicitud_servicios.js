@@ -138,6 +138,10 @@ $("#js_enviar").on("click", function(event){
 							alert(response.msg);  
 						}  
 						else{  
+							var inputs = $('#servicios-form :input');
+							inputs.each(function (){
+								$(this).empty();
+							})
 							alert(response.msg);
 							$('.js-enviar').attr('disabled',false);
 						}   

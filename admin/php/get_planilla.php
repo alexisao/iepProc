@@ -67,22 +67,22 @@ for($i=$sem_i;$i<=$sem_f;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
 	$html.='</tr>';
 }
 
-	$a = $fun->get_total_students_x_h($sala, $i,"08:00:00","09:59:59");
-	$b = $fun->get_total_students_x_h($sala, $i,"10:00:00","11:59:59");
-	$c = $fun->get_total_students_x_h($sala, $i,"13:00:00","14:59:59");
-	$d = $fun->get_total_students_x_h($sala, $i,"15:00:00","16:59:59");
-	$e = $fun->get_total_students_x_h($sala, $i,"17:00:00","18:59:59");
-	$f = $fun->get_total_students_x_h($sala, $i,"19:00:00","20:59:59");
+	$a = $fun->get_total_students_x_h($sala, $mes,"08:00:00","09:59:59");
+	$b = $fun->get_total_students_x_h($sala, $mes,"10:00:00","11:59:59");
+	$c = $fun->get_total_students_x_h($sala, $mes,"13:00:00","14:59:59");
+	$d = $fun->get_total_students_x_h($sala, $mes,"15:00:00","16:59:59");
+	$e = $fun->get_total_students_x_h($sala, $mes,"17:00:00","18:59:59");
+	$f = $fun->get_total_students_x_h($sala, $mes,"19:00:00","20:59:59");
 	$t_col=($a+$b+$c+$d+$e+$f);
 	$html.='<td></td>';
-	$html.='<td>Total</td>';
-	$html.='<td>'.$a.'</td>';
-	$html.='<td>'.$b.'</td>';
-	$html.='<td>'.$c.'</td>';
-	$html.='<td>'.$d.'</td>';
-	$html.='<td>'.$e.'</td>';
-	$html.='<td>'.$f.'</td>';
-	$html.='<td>'.$t_col.'</td>';
+	$html.='<td><strong>Total</strong></td>';
+	$html.='<td><strong>'.$a.'</strong></td>';
+	$html.='<td><strong>'.$b.'</strong></td>';
+	$html.='<td><strong>'.$c.'</strong></td>';
+	$html.='<td><strong>'.$d.'</strong></td>';
+	$html.='<td><strong>'.$e.'</strong></td>';
+	$html.='<td><strong>'.$f.'</strong></td>';
+	$html.='<td><strong>'.$t_col.'</strong></td>';
 /*
 $html.='<tr>';
 $html.='<td>'.$mes.'</td>';
