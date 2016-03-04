@@ -25,7 +25,7 @@ $interval = $datetime1->diff($datetime2);
 $meses = ( $interval->y * 12 ) + $interval->m;
 
 $mx=(int)$mes_i;
-$html='Seleccione un mes:<br><select id="mes" class="form-control input-sm">';
+$html='Seleccione un mes:<br><select id="mes" name="cbx_mes" class="form-control input-sm">';
 $arr_meses = array(
 	1 => "Enero",
 	2 => "Febrero",
@@ -48,6 +48,8 @@ for ($i=0; $i <= $meses; $i++) {
 
 }
 $html .= '</select>';
+
+$script = '';
 
 $response->res=$html;
 $response->msg=true;

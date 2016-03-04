@@ -82,6 +82,29 @@ function get_planilla(s,m,c){
 		    });
 }
 /*
+*	function get_chart_i(sala,mes,canvas,h_i,h_f)
+*	@return: Grafica solicitada
+*/
+function get_chart_i(s,m,canvas,ini,fin){
+	var url = "../php/get_chart_group.php?method=fetchdata";
+	var labels = 'dias';
+	$.ajax({            
+		    url: url,         
+		    dataType: "json",			
+			type: "POST",  
+		    data: {
+		    	s:s, 
+		    	m:m,
+		    	i:ini,
+		    	f:fin
+		    },                     
+		    success: function(r){      
+		    	//$("#"+c).html(r.table);
+		    	graficar(canvas,r.rows,labels);
+		        } 
+		    });
+}
+/*
 *	function get_chart_x(sala,mes,contenedor)
 *	@return: Grafica solicitada
 */
@@ -94,6 +117,10 @@ function get_chart(s,m,c,canvas,id){
 		case 2:
 			var url = "../php/get_chart.php?method=fetchdata";
 			var labels = 'dias';
+		break;
+		case 3:
+			var url = "../php/get_chart_group.php?method=fetchdata";
+			var labels = 'horas';
 		break;
 	}
 	$.ajax({            
@@ -108,6 +135,7 @@ function get_chart(s,m,c,canvas,id){
 		    success: function(r){      
 		    	//$("#"+c).html(r.table);
 		    	graficar(canvas,r.rows,labels);
+
 		        } 
 		    });
 }
@@ -116,10 +144,10 @@ function graficar(cv,dt,tlabl){
         // This will get the first returned node in the jQuery collection.
         switch(tlabl){
         	case "dias":
-        	 var labels = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+        	 var labels = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
         	break;
         	case "horas":
-        	 var labels = ["08:00 - 09:59", "10:00 - 11:59", "12:00 - 13:59", "14:00 - 15:59", "16:00 - 17:59", "18:00 - 19:59", "20:00 - 21:00"];
+        	 var labels = ["08:00 - 09:59", "10:00 - 11:59", "13:00 - 14:59", "15:00 - 16:59", "17:00 - 18:59", "19:00 - 20:59"];
         	break;
         }
         var data = {
@@ -166,8 +194,8 @@ function graficar(cv,dt,tlabl){
             //Number - Spacing between data sets within X values
             barDatasetSpacing : 1,
 
-            responsive: false,
-		    maintainAspectRatio: true,
+            responsive: true,
+		    maintainAspectRatio: false,
 
             //String - A legend template
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
@@ -191,6 +219,15 @@ function go_to(cont,req,sala,canvas){
 		break;
 		case "e_x_d":
 			get_chart(sala,mes,cont,canvas,2);
+		break;
+		case "e_x_dd":
+			ncanvas=canvas+"_s"+sala;
+			get_chart_i(sala,mes,ncanvas+'_1','08:00:00','09:59:59');
+			get_chart_i(sala,mes,ncanvas+'_2','10:00:00','11:59:59');
+			get_chart_i(sala,mes,ncanvas+'_3','13:00:00','14:59:59');
+			get_chart_i(sala,mes,ncanvas+'_4','15:00:00','16:59:59');
+			get_chart_i(sala,mes,ncanvas+'_5','17:00:00','18:59:59');
+			get_chart_i(sala,mes,ncanvas+'_6','19:00:00','21:00:00');
 		break;
 	}
 }

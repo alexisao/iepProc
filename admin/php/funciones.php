@@ -134,6 +134,39 @@ class funciones{
 		}
 		//echo "<br>Total acum: ".$acum;
 		return $acum;
+	}
+
+	function get_total_students_x_dh($sala, $mes, $dia, $h_ini, $h_fin){
+		include("../semestre.php");
+		$con = new con();
+		$con->connect();
+		
+		#recorremos semestre
+		$arr_dias_semana=array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
+
+		#acum
+		$acum = 0;
+		
+		$day = split(" ",$semestre_ini);
+		$sem_i = $day[0];
+		$sem_f = $semestre_fin;
+		$i=0;
+		for($i=$sem_i;$i<=$sem_f;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+			$dia_semana = $arr_dias_semana[(date('N', strtotime($i)) - 1)];
+			$mes_fecha = date('n', strtotime($i));
+			if ($mes_fecha==$mes) {
+				if($dia_semana===$dia){
+					$query="SELECT COUNT(fe_id) AS conteo FROM tbl_flujo_estudiantes WHERE fe_sala=".$sala." AND fe_log_fecha BETWEEN '".$i." ".$h_ini."' AND '".$i." ".$h_fin."';";
+					//echo $query."<br>";
+					$rq = mysql_query($query);
+					$fq = mysql_fetch_array($rq);
+					//echo "<br> -> fecha[".$i."] >> acum=".$acum." // result=".$fq[0];
+					$acum += $fq[0];
+				}
+			}
+		}
+		//echo "<br>Total acum: ".$acum;
+		return $acum;
 	}	
 
 }
