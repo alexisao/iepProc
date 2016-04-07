@@ -290,6 +290,7 @@ function registrar_llegada(room){
 		growl("success",data.mes)
 		$("#codigo-s"+room).val('');
 		$("#pc-s"+room).val('');
+		location.reload();
 	}
 	else{
 		growl("danger",data.mes)
