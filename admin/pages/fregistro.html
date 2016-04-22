@@ -38,13 +38,31 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style type="text/css">
+    	.loading_box{
+    		position:absolute;
+		    width:100%;
+		    height:100%;
+		    background:#fff url(../img/ajax-loader.gif) no-repeat center;
+		    display: block;
+		    z-index: 2000;
+		    text-align: center;
+		    opacity: 0.7;
+    	}
+    	.loading_text{
+    		position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 400px;
+			height: 100px;
+			margin: -29px 0 0 -200px;
+    	}
+    </style>
 </head>
 
 <body>
-
+<div class="loading_box"> <div class="loading_text">Cargando datos...</div></div>
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -131,6 +149,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <br>
+                            <div id="cargando_box"></div>
                             <div class="col-lg-8">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
@@ -170,24 +189,24 @@
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                 <select id="plan" class="form-control">
-                                                	<option value="3410">	Profesional en Ciencias del Deporte	</option>
-													<option value="3454">	Licenciatura en Matemática Física - Presencial	</option>
-													<option value="3456">	Licenciatura en Biología Química - Presencial	</option>
-													<option value="3458">	Licenciatura en Educación Física y Salud	</option>
-													<option value="3462">	Licenciatura en Educación Primaria	</option>
-													<option value="3464">	Programa Académico en Recreación	</option>
-													<option value="3465">	Profesional en Estudios Políticos y Resolución de conflictos	</option>
-													<option value="3466">	Programa Académico en Recreación - Nocturno	</option>
-													<option value="3467">	Licenciatura en Educación Básica Enf en Ciencias Naturales y Educación Ambiental - Presencial	</option>
-													<option value="3468">	Licenciatura en Educación Básica Enf en Ciencias Naturales y Educación Ambiental – Semi-presencial	</option>
-													<option value="3469">	Licenciatura en Educación Básica Enf en Educación Matemática - Presencial	</option>
-													<option value="3470">	Licenciatura en Educación Básica Enf en Educación Matemática – Semi-presencial	</option>
-													<option value="3484">	Licenciatura en Educación Física y Deporte - Presencial	</option>
-													<option value="3485">	Licenciatura en Educación Física y Deporte – Semi-presencial	</option>
-													<option value="3486">	Licenciatura en Educación Popular- Semi-presencial nocturno	</option>
-													<option value="3487">	Licenciatura en Matemática Física - Presencial	</option>
-													<option value="3488">	Licenciatura en Matemática Física - Semi-presencial	</option>
-													<option value="9999">	Otro Plan	</option>
+                                                	<option value="3410">	(3410) Profesional en Ciencias del Deporte	</option>
+													<option value="3454">	(3454) Licenciatura en Matemática Física - Presencial	</option>
+													<option value="3456">	(3456) Licenciatura en Biología Química - Presencial	</option>
+													<option value="3458">	(3458) Licenciatura en Educación Física y Salud	</option>
+													<option value="3462">	(3462) Licenciatura en Educación Primaria	</option>
+													<option value="3464">	(3464) Programa Académico en Recreación	</option>
+													<option value="3465">	(3465) Profesional en Estudios Políticos y Resolución de conflictos	</option>
+													<option value="3466">	(3466) Programa Académico en Recreación - Nocturno	</option>
+													<option value="3467">	(3467) Licenciatura en Educación Básica Enf en Ciencias Naturales y Educación Ambiental - Presencial	</option>
+													<option value="3468">	(3468) Licenciatura en Educación Básica Enf en Ciencias Naturales y Educación Ambiental – Semi-presencial	</option>
+													<option value="3469">	(3469) Licenciatura en Educación Básica Enf en Educación Matemática - Presencial	</option>
+													<option value="3470">	(3470) Licenciatura en Educación Básica Enf en Educación Matemática – Semi-presencial	</option>
+													<option value="3484">	(3484) Licenciatura en Educación Física y Deporte - Presencial	</option>
+													<option value="3485">	(3485) Licenciatura en Educación Física y Deporte – Semi-presencial	</option>
+													<option value="3486">	(3486) Licenciatura en Educación Popular- Semi-presencial nocturno	</option>
+													<option value="3487">	(3487) Licenciatura en Matemática Física - Presencial	</option>
+													<option value="3488">	(3488) Licenciatura en Matemática Física - Semi-presencial	</option>
+													<option value="9999">	(9999) Otro Plan	</option>
                                                 </select>
                                             </div>
                                             <div class="form-group input-group">
@@ -265,6 +284,7 @@
     
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+    	$("#cargando_box").show();
         get_user("#fld-email");
         $(document).ready(function() {
         var oTable = $('#datatables-registrados').dataTable({
@@ -274,6 +294,7 @@
             }
         });
         get_registrados(oTable);
+        $(".loading_box").fadeOut(10000);
     });
     </script>
 

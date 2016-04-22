@@ -201,7 +201,7 @@ function get_reservas(oTable){
 function get_registrados(oTable){
 	$.ajax({			
 	url: "../php/get_registrados.php?method=fetchdata",			
-	dataType: "json",						
+	dataType: "json",
 	success: function(data){		
 		//oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
