@@ -45,10 +45,6 @@ switch ($id) {
 
 		$response->rows=$arr_cant;
 		break;
-	
-	default:
-		# code...
-		break;
 }
 
 echo json_encode($response);

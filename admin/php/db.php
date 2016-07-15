@@ -3,7 +3,7 @@ class con {
 	//variables de conexion  
     private $host = 'localhost';  
     private $user = 'root';  
-    private $pass = '';  
+    private $pass = 'HoldTheDoor=H0d0r';  
     public $type = 'mysql';  
     private $db = "procesos_iep";   
     public $lid = 0;  
