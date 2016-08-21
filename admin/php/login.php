@@ -31,6 +31,7 @@ $existe = mysql_fetch_assoc($row_cons);
 
 /*Existe*/
 //$existe = 1;
+$url="";
 if($existe){
 	$res = true;
 	$mes = "Welcome";
@@ -38,6 +39,16 @@ if($existe){
 	$_SESSION["ses_id"] = $existe['us_id'];
 	$_SESSION["ses_email"] = $existe['us_email'];
 	$_SESSION["ses_tipo"] = $existe['us_tipo'];
+
+	switch ($existe["us_tipo"]) {
+		case "6":
+			$url = "../pages/flujocendopu.html";
+			break;
+		
+		default:
+			$url = "../pages/index.html";
+			break;
+	}
 	
 	//$menu = 1;
 }else{
@@ -47,6 +58,7 @@ if($existe){
 
 $response->res = $res;
 $response->mes = $mes;
+$response->url = $url;
 echo json_encode($response);
 
 $con->disconnect();

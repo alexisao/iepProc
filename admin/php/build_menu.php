@@ -14,8 +14,8 @@ $search = '<li class="sidebar-search">
                         </li>';
 
 $menu_super = $search.'
-		<li>
-         	<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+        <li>
+            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
         </li>
         <li>
             <a href="solicitudes.html"><i class="fa fa-inbox fa-fw"></i> Solicitudes</a>
@@ -29,6 +29,31 @@ $menu_super = $search.'
                 <li><a href="fregistro.html"><i class="fa fa-users fa-fw"></i> Registro de Estudiantes</a></li>
                 <li><a href="flujo.html"><i class="fa fa-retweet fa-fw"></i> Ver Flujos</a></li>
                 <li><a href="observaciones.html"><i class="fa fa-comments fa-fw"></i> Observaciones</a></li>
+            </ul>
+            <!-- /.nav-second-level -->
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="rsolicitudes.html"><i class="fa fa-bar-chart-o fa-fw"></i>Solicitudes</a></li>
+                <li><a href="rreservas.html"><i class="fa fa-bar-chart-o fa-fw"></i>Reservas</a></li>
+                <li><a href="rflujo.html"><i class="fa fa-bar-chart-o fa-fw"></i>Flujo - Salas</a></li>
+                <li><a href="robservaciones.html"><i class="fa fa-bar-chart-o fa-fw"></i>Observaciones</a></li>
+            </ul>
+            <!-- /.nav-second-level -->
+        </li>
+        <li>
+            <a href="usuarios.html"><i class="fa fa-user fa-fw"></i> Usuarios</a>
+        </li>
+';
+$menu_cendopu = $search.'
+		<li>
+         	<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Cendopu<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="fregistro.html"><i class="fa fa-users fa-fw"></i> Registro de Estudiantes</a></li>
             </ul>
             <!-- /.nav-second-level -->
         </li>
@@ -95,8 +120,11 @@ if(isset($_SESSION["ses_id"]))
 			case 3:
 				$menu=$menu_comunicaciones;
 				break;
-			case 3:
-				$menu=$menu_monitor;
+            case 3:
+                $menu=$menu_monitor;
+                break;
+			case 6:
+				$menu=$menu_cendopu;
 				break;
 			
 			default:

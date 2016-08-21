@@ -30,7 +30,6 @@ if($rows[0]!=0){
 	/*insercción*/
 	$selectSQL ="INSERT INTO tbl_users (us_usuario, us_clave, us_email, us_tipo, us_estado)
 				 	VALUES (".$codigo.",'".$clave."','".$correo."',".$tipo.",1);";
-
 	$row_cons = mysql_query($selectSQL);
 
 	if($row_cons){

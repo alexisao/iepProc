@@ -37,11 +37,10 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				'
 				<button type="button" id="salida'.$fila[4].'" onclick="registrar_salida('.$fila[4].','.$fila[2].',this);" title="Registrar Salida" class="btn btn-success btn-circle"><i class="fa fa-paper-plane-o"></i></button>
 				<button type="button" id="borrar'.$fila[4].'" onclick="borrar_registro('.$fila[4].','.$fila[2].',this);" title="Borrar Registro" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
-
 				'
 				);
 }
-//print_r($arrayData);
+#print_r($arrayData);
 echo json_encode($arrayData);
 
 $con->disconnect();

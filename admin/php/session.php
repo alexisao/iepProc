@@ -13,7 +13,6 @@ if(isset($_SESSION["ses_id"]))
 		$s_tipo=$_SESSION["ses_tipo"];
 		$res = true;
 		$mes = $s_email;
-
 	}
 	else{
 		$res = false;

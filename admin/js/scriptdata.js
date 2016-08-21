@@ -16,6 +16,7 @@ function build_menu(a){
 			$('#flu').removeClass('hide');
 			$('#reportes').removeClass('hide');
 			$('#users-tab').removeClass('hide');
+			$('#cendopu-tab').addClass('hide');
 		break;
 		case 2:
 			$('#index').removeClass('hide');
@@ -23,6 +24,7 @@ function build_menu(a){
 			$('#res').removeClass('hide');
 			$('#flu').addClass('hide');
 			$('#reportes').removeClass('hide');
+			$('#cendopu-tab').addClass('hide');
 		break;
 		case 3:
 			$('#index').removeClass('hide');
@@ -31,6 +33,7 @@ function build_menu(a){
 			$('#flu-box').addClass('hide');
 			$('#obs-box').addClass('hide');
 			$('#btn_details').addClass('hide');
+			$('#cendopu-tab').addClass('hide');
 		break;
 		case 4:
 			$('#index').removeClass('hide');
@@ -38,6 +41,7 @@ function build_menu(a){
 			$('#sol-box').addClass('hide');
 			$('#res-box').addClass('hide');
 			$('#btn_details').addClass('hide');
+			$('#cendopu-tab').addClass('hide');
 		break;
 		case 5:
 			$('#index').removeClass('hide');
@@ -47,6 +51,18 @@ function build_menu(a){
 			$('#flu-box').addClass('hide');
 			$('#obs-box').addClass('hide');
 			$('#btn_details').addClass('hide');
+			$('#cendopu-tab').addClass('hide');
+		break;
+		case 6:
+			$('#index').addClass('hide');
+			$('#res').addClass('hide');
+			$('#sol-box').addClass('hide');
+			$('#res-box').addClass('hide');
+			$('#flu-box').addClass('hide');
+			$('#obs-box').addClass('hide');
+			$('#btn_details').addClass('hide');
+			$('#li_flujo').addClass('hide');
+			$('#cendopu-tab').removeClass('hide');
 		break;
 	}
 }
@@ -143,7 +159,7 @@ function get_usuarios(oTable){
 			oTable.fnAddData([
 			data[i][0],
 			data[i][1],
-			data[i][2],
+			//data[i][2],
 			data[i][5]
 			]);
 		} 
@@ -512,6 +528,33 @@ function borrar_observacion(cod,obj){
 	  }
 	});	
 }
+
+/* 
+*	Función turnos 
+*	@return: grid de turnos para modificar por usuario
+*/
+function turnos(a, n){
+	$("#id_us").val(a);
+	$("#nombre_monitor").text(n);
+	$.ajax({			
+		url: "../php/get_turnos.php",			
+		dataType: "json",			
+		type: "POST",			
+		data: {id:a},			
+		success: function(data){		
+		if(data.res==true){		
+			growl("success",data.mes);
+			$("#turnos_body").empty();
+			$("#turnos_body").html(data.bdy);
+		}
+		else{
+			growl("danger",data.mes)
+		}
+	}});
+	$(".bg-info").fadeOut();
+	$(".bg-danger").fadeOut();
+}
+
 /* 
 *	Función cambiar_clave 
 *	@return: id del usuario en el input hidden del modal
@@ -1060,6 +1103,9 @@ $(document).on("click", "#llegada_sala2", function(event){
 });
 $(document).on("click", "#llegada_sala3", function(event){
 	registrar_llegada(3);
+});
+$(document).on("click", "#llegada_sala4", function(event){
+	registrar_llegada(4);
 });
 $(document).on("click", "#registrar-observacion", function(event){
 	registrar_observacion();

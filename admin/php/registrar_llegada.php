@@ -41,9 +41,10 @@ if($rows[0]==0){
 			$mes="Este pc se encuentra en uso.";
 		}else{
 			/*insercción*/
-			$selectSQL ="INSERT INTO tbl_flujo_estudiantes (fe_es_codigo, fe_sala, fe_pc, fe_hora_entrada, fe_monitor, fe_estado)
-						 	VALUES ('".$codigo."',".$sala.",".$pc.",'".$hora_entrada."',".$monitor.",1);";
+			$selectSQL ="INSERT INTO tbl_flujo_estudiantes (fe_es_codigo, fe_sala, fe_pc, fe_hora_entrada, fe_monitor, fe_estado, fe_id_del)
+						 	VALUES ('".$codigo."',".$sala.",".$pc.",'".$hora_entrada."',".$monitor.",1, 0);";
 
+			#echo $selectSQL;
 			$row_cons = mysql_query($selectSQL);
 
 			if($row_cons){

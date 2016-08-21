@@ -53,7 +53,6 @@ $script = '';
 
 $response->res=$html;
 $response->msg=true;
-
 echo json_encode($response);
 
 ?>

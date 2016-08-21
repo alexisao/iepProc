@@ -39,8 +39,9 @@ $.ajax({
 		pass: $('#password').val()
 	},			
 	success: function(data){		
-	if(data.res==true){					
-		url = "../pages/index.html";  					
+	if(data.res==true){
+		console.log(data.url);					
+		url = data.url;  					
 		$(location).attr('href',url); 				
 	}else				
 	{	

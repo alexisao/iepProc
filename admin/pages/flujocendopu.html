@@ -110,6 +110,14 @@
                         <li >
                             <a  class="hide" id="users-tab" href="usuarios.html"><i class="fa fa-user fa-fw"></i> Usuarios</a>
                         </li>
+                        <li>
+                            <a  class="hide" id="cendopu-tab" href="#"><i class="fa fa-book fa-fw"></i> Cendopu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="flujocendopu.html"><i class="fa fa-desktop fa-fw"></i>Flujo</a></li>
+                                <li><a href="rcendopu.html"><i class="fa fa-bar-chart-o fa-fw"></i>Reportes</a></li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -120,272 +128,27 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Flujo de Estudiantes en Salas</h1>
+                    <h1 class="page-header">Centro de Documentación Instituto de Educación y Pedagogía</h1>
                 </div>
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-retweet fa-fw"></i>  Control de flujo de estudiantes - salas IEP
+                            <i class="fa fa-retweet fa-fw"></i>  Uso de Equipos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab" id="tab_home">Sala 1</a>
-                                </li>
-                                <li><a href="#profile" data-toggle="tab" id="tab_profile">Sala 2</a>
-                                </li>
-                                <li><a href="#messages" data-toggle="tab" id="tab_messages">Sala 3</a>
-                                </li>
-                                <li><a href="#reservas" data-toggle="tab" id="tab_reservas">Horarios de reserva</a>
+                                <li class="active"><a href="#cendopu" data-toggle="tab">Cendopu</a>
                                 </li>
                                 <li><a href="#" data-toggle="modal" data-target="#add_estudiante_modal"> <i class="fa fa-plus fa-fw"></i> Registrar Nuevo Estudiante</a>
                                 </li>
                             </ul>
+
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="home"><br>
-                                    <div class="col-lg-8">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                Estudiantes en sala 1
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="dataTable_wrapper">
-                                                    <table class="table table-striped table-bordered table-hover" id="datatables-sala1">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>PC</th>
-                                                                <th>Nombre</th>
-                                                                <th>Código - Plan</th>
-                                                                <th>Opciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                Panel Footer
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-8 -->
-                                    <div class="col-lg-4">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                Registrar Llegada - Sala 1
-                                            </div>
-                                            <div class="panel-body">
-                                                <form role="form">
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                        <input type="text" class="form-control" id="codigo-s1" placeholder="Código">
-                                                    </div>
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-
-                                                        <select class="form-control" id="pc-s1">
-                            															<option value="1">1</option>
-                            															<option value="2">2</option>
-                            															<option value="3">3</option>
-                            															<option value="4">4</option>
-                            															<option value="5">5</option>
-                            															<option value="6">6</option>
-                            															<option value="7">7</option>
-                            															<option value="8">8</option>
-                            															<option value="9">9</option>
-                            															<option value="10">10</option>
-                            															<option value="11">11</option>
-                            															<option value="12">12</option>
-                            															<option value="13">13</option>
-                            															<option value="14">14</option>
-                            															<option value="15">15</option>
-                            															<option value="16">16</option>
-                            															<option value="17">17</option>
-                            															<option value="18">18</option>
-                            															<option value="19">19</option>
-                            															<option value="20">20</option>
-                                                        </select>
-                                                        <input type="hidden" class="form-control" id="sala-s1" value="1">
-                                                    </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                               <button type="button" id="llegada_sala1" class="btn btn-success">Enviar</button>
-                                               <button type="button" onclick="this.form.reset();" class="btn btn-danger">Cancelar</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-4 -->
-                                </div>
-                                <div class="tab-pane fade" id="profile"><br>
-                                    <div class="col-lg-8">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                Estudiantes en sala 2
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="dataTable_wrapper">
-                                                    <table class="table table-striped table-bordered table-hover" id="datatables-sala2">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>PC</th>
-                                                                <th>Nombre</th>
-                                                                <th>Código - Plan</th>
-                                                                <th>Opciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                Panel Footer
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-8 -->
-                                    <div class="col-lg-4">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                Registrar Llegada - Sala 2
-                                            </div>
-                                            <div class="panel-body">
-                                                <form role="form">
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                        <input type="text" class="form-control" id="codigo-s2" placeholder="Código">
-                                                    </div>
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-
-                                                        <select class="form-control" id="pc-s2">
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-															<option value="11">11</option>
-															<option value="12">12</option>
-															<option value="13">13</option>
-															<option value="14">14</option>
-															<option value="15">15</option>
-															<option value="16">16</option>
-															<option value="17">17</option>
-                                                        </select>
-                                                        <input type="hidden" class="form-control" id="sala-s2" value="2">
-                                                    </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                <button type="button" id="llegada_sala2" class="btn btn-success">Enviar</button>
-                                                <button type="button" onclick="this.form.reset();" class="btn btn-danger">Cancelar</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-4 -->
-                                </div>
-                                <div class="tab-pane fade" id="messages"><br>
-                                    <div class="col-lg-8">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                Estudiantes en sala 3
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="dataTable_wrapper">
-                                                    <table class="table table-striped table-bordered table-hover" id="datatables-sala3">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>PC</th>
-                                                                <th>Nombre</th>
-                                                                <th>Código - Plan</th>
-                                                                <th>Opciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                Panel Footer
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-8 -->
-                                    <div class="col-lg-4">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                Registrar Llegada - Sala 3
-                                            </div>
-                                            <div class="panel-body">
-                                                <form role="form">
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                        <input type="text" class="form-control" id="codigo-s3" placeholder="Código">
-                                                    </div>
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-
-                                                        <select class="form-control" id="pc-s3">
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-															<option value="11">11</option>
-															<option value="12">12</option>
-															<option value="13">13</option>
-															<option value="14">14</option>
-															<option value="15">15</option>
-															<option value="16">16</option>
-															<option value="17">17</option>
-															<option value="18">18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-                                                        </select>
-                                                        <input type="hidden" class="form-control" id="sala-s3" value="3">
-                                                    </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                <button type="button" id="llegada_sala3" class="btn btn-success">Enviar</button>
-                                                <button type="button" onclick="this.form.reset();" class="btn btn-danger">Cancelar</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-4 -->
-                                </div>
-                                <div class="tab-pane fade" id="reservas"><br>
-                                    <div class="col-lg-12">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                Reservas de sala
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="dataTable_wrapper">
-                                                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=correounivalle.edu.co_u3j0hknasqnke9ptba2dfpp0l0%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FBogota" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-                                                </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                Panel Footer
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-12 -->
-                                </div>
-                                <div class="tab-pane fade" id="cendopu"><br>
+                                <div class="tab-pane fade in active" id="cendopu"><br>
                                     <div class="col-lg-8">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -437,6 +200,8 @@
                                                             <option value="8">8</option>
                                                             <option value="9">9</option>
                                                             <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
                                                         </select>
                                                         <input type="hidden" class="form-control" id="sala-s4" value="4">
                                                     </div>
@@ -552,28 +317,14 @@
     <script>
     $(document).ready(function() {
         get_user("#fld-email");
-        var oTable1 = $('#datatables-sala1').dataTable({
+        var oTable4 = $('#datatables-sala4').dataTable({
         	responsive: true,
         	language: {
-                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-            }
-        });
-        var oTable2 = $('#datatables-sala2').dataTable({
-        	responsive: true,
-        	language: {
-                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-            }
-        });
-        var oTable3 = $('#datatables-sala3').dataTable({
-            responsive: true,
-            language: {
                 "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
             }
         });
 
-    	get_flujo(oTable1,1);
-        get_flujo(oTable2,2);
-        get_flujo(oTable3,3);
+        get_flujo(oTable4,4);
 
     });
     </script>
