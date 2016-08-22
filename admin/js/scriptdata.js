@@ -2,8 +2,8 @@
 *	Funciones que construyen la página
 */
 
-/* 
-*	Función build_menu 
+/*
+*	Función build_menu
 *	@return: email del usuario activo en la sesión
 */
 function build_menu(a){
@@ -80,38 +80,38 @@ function validarEmail(correo) {
 	}
 }
 
-/* 
-*	Función get_user 
+/*
+*	Función get_user
 *	@return: email del usuario activo en la sesión
 */
 function get_user(a){
-	$.ajax({			
-	url: "../php/session.php",			
-	dataType: "json",			
-	type: "POST",			
-	data: {opt:"get_user"},			
-	success: function(data){		
-	if(data.res==true){					
+	$.ajax({
+	url: "../php/session.php",
+	dataType: "json",
+	type: "POST",
+	data: {opt:"get_user"},
+	success: function(data){
+	if(data.res==true){
 		$(a).text(data.mes);
 		build_menu(data.uid);
 	}
 	else{
-		$(location).attr('href',data.mes); 
+		$(location).attr('href',data.mes);
 	}
 	}});
 }
-/* 
-*	Función get_aLotData 
-*	@return: 
+/*
+*	Función get_aLotData
+*	@return:
 */
 function get_aLotData(id_sol,id_res,id_flu,id_obs){
-	$.ajax({			
-	url: "../php/get_alotdata.php",			
-	dataType: "json",			
-	type: "POST",			
-	data: {},			
-	success: function(data){		
-	if(data.res==true){					
+	$.ajax({
+	url: "../php/get_alotdata.php",
+	dataType: "json",
+	type: "POST",
+	data: {},
+	success: function(data){
+	if(data.res==true){
 		$(id_sol).html(data.sol);
 		$(id_res).html(data.reo);
 		$(id_flu).html(data.flu);
@@ -122,15 +122,15 @@ function get_aLotData(id_sol,id_res,id_flu,id_obs){
 	}
 	}});
 }
-/* 
+/*
 *	Función get_solicitudes
 *	@return: arreglo para datatable con las solicitudes
 */
 function get_solicitudes(oTable){
-	$.ajax({			
-	url: "../php/get_solicitudes.php?method=fetchdata",			
-	dataType: "json",						
-	success: function(data){		
+	$.ajax({
+	url: "../php/get_solicitudes.php?method=fetchdata",
+	dataType: "json",
+	success: function(data){
 		oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -142,18 +142,18 @@ function get_solicitudes(oTable){
 			data[i][5],
 			data[i][6]
 			]);
-		} 
+		}
 	}});
 }
-/* 
+/*
 *	Función get_usuarios
 *	@return: arreglo para datatable con las solicitudes
 */
 function get_usuarios(oTable){
-	$.ajax({			
-	url: "../php/get_usuarios.php?method=fetchdata",			
-	dataType: "json",						
-	success: function(data){		
+	$.ajax({
+	url: "../php/get_usuarios.php?method=fetchdata",
+	dataType: "json",
+	success: function(data){
 		oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -162,18 +162,18 @@ function get_usuarios(oTable){
 			//data[i][2],
 			data[i][5]
 			]);
-		} 
+		}
 	}});
 }
-/* 
+/*
 *	Función get_observaciones
 *	@return: arreglo para datatable con las observaciones
 */
 function get_observaciones(oTable){
-	$.ajax({			
-	url: "../php/get_observaciones.php?method=fetchdata",			
-	dataType: "json",						
-	success: function(data){		
+	$.ajax({
+	url: "../php/get_observaciones.php?method=fetchdata",
+	dataType: "json",
+	success: function(data){
 		oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -184,18 +184,18 @@ function get_observaciones(oTable){
 			data[i][4],
 			data[i][5]
 			]);
-		} 
+		}
 	}});
 }
-/* 
+/*
 *	Función get_reservas
 *	@return: arreglo para datatable con las solicitudes
 */
 function get_reservas(oTable){
-	$.ajax({			
-	url: "../php/get_reservas.php?method=fetchdata",			
-	dataType: "json",						
-	success: function(data){		
+	$.ajax({
+	url: "../php/get_reservas.php?method=fetchdata",
+	dataType: "json",
+	success: function(data){
 		oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -207,18 +207,18 @@ function get_reservas(oTable){
 			data[i][5],
 			data[i][6]
 			]);
-		} 
+		}
 	}});
 }
-/* 
+/*
 *	Función get_registrados
 *	@return: arreglo para datatable con los estudiantes registrados
 */
 function get_registrados(oTable){
-	$.ajax({			
-	url: "../php/get_registrados.php?method=fetchdata",			
+	$.ajax({
+	url: "../php/get_registrados.php?method=fetchdata",
 	dataType: "json",
-	success: function(data){		
+	success: function(data){
 		//oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -226,21 +226,21 @@ function get_registrados(oTable){
 			data[i][1],
 			data[i][2]
 			]);
-		} 
+		}
 	}});
 }
 
-/* 
+/*
 *	Función get_flujo
 *	@return: arreglo para datatable con los estudiantes registrados
 */
 function get_flujo(oTable,room){
-	$.ajax({			
-	url: "../php/get_flujo.php?method=fetchdata",		
-	dataType: "json",			
-	type: "POST",			
-	data: {sala:room},	
-	success: function(data){		
+	$.ajax({
+	url: "../php/get_flujo.php?method=fetchdata",
+	dataType: "json",
+	type: "POST",
+	data: {sala:room},
+	success: function(data){
 		oTable.fnClearTable();
 		for(var i = 0; i < data.length; i++) {
 			oTable.fnAddData([
@@ -249,26 +249,26 @@ function get_flujo(oTable,room){
 			data[i][2],
 			data[i][3]
 			]);
-		} 
+		}
 	}});
 }
 
-/* 
-*	Función registrar_estudiante 
+/*
+*	Función registrar_estudiante
 *	@return: respuesta de la inserción del estudiante en la bd
 */
 function registrar_estudiante(){
-	$.ajax({			
-	url: "../php/registrar_estudiante.php",			
-	dataType: "json",			
-	type: "POST",			
+	$.ajax({
+	url: "../php/registrar_estudiante.php",
+	dataType: "json",
+	type: "POST",
 	data: {
 			codigo:$("#codigo").val(),
 			plan:$("#plan").val(),
 			nombre:$("#nombre").val()
-		},			
-	success: function(data){		
-	if(data.res==true){		
+		},
+	success: function(data){
+	if(data.res==true){
 		growl("success",data.mes)
 		$("#codigo").val('');
 		$("#plan").val('');
@@ -287,22 +287,22 @@ function registrar_estudiante(){
 	}});
 	//location.reload();
 }
-/* 
-*	Función registrar_llegada 
+/*
+*	Función registrar_llegada
 *	@return: respuesta de la inserción del estudiante en la bd
 */
 function registrar_llegada(room){
-	$.ajax({			
-	url: "../php/registrar_llegada.php",			
-	dataType: "json",			
-	type: "POST",			
+	$.ajax({
+	url: "../php/registrar_llegada.php",
+	dataType: "json",
+	type: "POST",
 	data: {
 			codigo:$("#codigo-s"+room).val(),
 			pc:$("#pc-s"+room).val(),
 			sala:room
-		},			
-	success: function(data){		
-	if(data.res==true){		
+		},
+	success: function(data){
+	if(data.res==true){
 		growl("success",data.mes)
 		$("#codigo-s"+room).val('');
 		$("#pc-s"+room).val('');
@@ -314,22 +314,22 @@ function registrar_llegada(room){
 	}});
 	//location.reload();
 }
-/* 
-*	Función registrar_observacion 
+/*
+*	Función registrar_observacion
 *	@return: respuesta de la inserción del estudiante en la bd
 */
 function registrar_observacion(){
-	$.ajax({			
-	url: "../php/registrar_observacion.php",			
-	dataType: "json",			
-	type: "POST",			
+	$.ajax({
+	url: "../php/registrar_observacion.php",
+	dataType: "json",
+	type: "POST",
 	data: {
 			observacion:$("#obs").val(),
 			pc:$("#pc").val(),
 			sala:$("#room").val()
-		},			
-	success: function(data){		
-	if(data.res==true){		
+		},
+	success: function(data){
+	if(data.res==true){
 		growl("success",data.mes)
 		$("#pc").val('');
 		$("#obs").val('');
@@ -347,27 +347,27 @@ function registrar_observacion(){
 	}});
 	//location.reload();
 }
-/* 
-*	Función registrar_usuario 
+/*
+*	Función registrar_usuario
 *	@return: respuesta de la inserción del estudiante en la bd
 */
 function registrar_usuario(){
 	correo = $("#email").val();
 	if(validarEmail(correo)){
 		if($("#key").val()==$("#rkey").val()){
-			$.ajax({			
-			url: "../php/registrar_usuario.php",			
-			dataType: "json",			
-			type: "POST",			
+			$.ajax({
+			url: "../php/registrar_usuario.php",
+			dataType: "json",
+			type: "POST",
 			data: {
 					rol:$("#rol").val(),
 					id:$("#id").val(),
 					rclave:$("#rkey").val(),
 					clave:$("#key").val(),
 					correo:$("#email").val()
-				},			
-			success: function(data){		
-			if(data.res==true){		
+				},
+			success: function(data){
+			if(data.res==true){
 				growl("success",data.mes);
 				$('#form-nuevoest').trigger("reset");
 				var oTable = $('#datatables-observaciones').dataTable({responsive: true});
@@ -380,23 +380,23 @@ function registrar_usuario(){
 		}
 		else{
 			growl("danger","Contraseñas no coinciden");
-		}		
+		}
 	}else{growl("danger","El correo no es institucional");}
 }
-/* 
+/*
 *	Función registrar_salida
 *	@return: registro de la salida del estudiante
 */
 function registrar_salida(cod,npc,obj){
 	bootbox.confirm("¿Está seguro que el estudiante con codigo "+npc+" es el que va a salir de la sala?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/registrar_salida.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:cod, codigo:npc },			
-		success: function(data){		
-		if(data.res==true){		
+	  	$.ajax({
+		url: "../php/registrar_salida.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:cod, codigo:npc },
+		success: function(data){
+		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut();
 		}
@@ -406,22 +406,22 @@ function registrar_salida(cod,npc,obj){
 		}});
 		//location.reload();
 	  }
-	});	
+	});
 }
-/* 
+/*
 *	Función registrar_atendido
 *	@return: registro de la salida del estudiante
 */
 function registrar_atendido(cod,obj){
 	bootbox.confirm("¿Está seguro?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/registrar_atendido.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:cod },			
-		success: function(data){		
-		if(data.res==true){		
+	  	$.ajax({
+		url: "../php/registrar_atendido.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:cod },
+		success: function(data){
+		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut();
 		}
@@ -430,21 +430,21 @@ function registrar_atendido(cod,obj){
 		}
 		}});
 	  }
-	});	
+	});
 }
-/* 
+/*
 *	Función borrar_estudiante
 *	@return: eliminar registro de la bd
 */
 function borrar_estudiante(cod,npc,obj){
 	bootbox.confirm("¿Está seguro que desea borrar al estudiante con codigo "+npc+"?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/borrar_estudiante.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:cod },			
-		success: function(data){		
+	  	$.ajax({
+		url: "../php/borrar_estudiante.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:cod },
+		success: function(data){
 		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut()
@@ -454,21 +454,21 @@ function borrar_estudiante(cod,npc,obj){
 		}
 		}});
 	  }
-	});	
+	});
 }
-/* 
+/*
 *	Función borrar_registro
 *	@return: eliminar registro de la bd
 */
 function borrar_registro(cod,npc,obj){
 	bootbox.confirm("¿Está seguro que desea borrar la entrada del estudiante con codigo "+npc+"?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/borrar_entrada.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:cod, codigo:npc },			
-		success: function(data){		
+	  	$.ajax({
+		url: "../php/borrar_entrada.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:cod, codigo:npc },
+		success: function(data){
 		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut()
@@ -478,21 +478,21 @@ function borrar_registro(cod,npc,obj){
 		}
 		}});
 	  }
-	});	
+	});
 }
-/* 
+/*
 *	Función borrar_usuario
 *	@return: eliminar registro de la bd
 */
 function borrar_usuario(cod,obj){
 	bootbox.confirm("¿Está seguro que desea borrar este usuario?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/borrar_usuario.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {codigo:cod },			
-		success: function(data){		
+	  	$.ajax({
+		url: "../php/borrar_usuario.php",
+		dataType: "json",
+		type: "POST",
+		data: {codigo:cod },
+		success: function(data){
 		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut()
@@ -502,22 +502,22 @@ function borrar_usuario(cod,obj){
 		}
 		}});
 	  }
-	});	
+	});
 }
-/* 
+/*
 *	Función borrar_observacion
 *	@return: eliminar registro de la bd
 */
 function borrar_observacion(cod,obj){
 	bootbox.confirm("¿Está seguro que desea borrar esta observación?", function(result) {
 	  if(result){
-	  	$.ajax({			
-		url: "../php/borrar_observacion.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:cod},			
-		success: function(data){		
-		if(data.res==true){		
+	  	$.ajax({
+		url: "../php/borrar_observacion.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:cod},
+		success: function(data){
+		if(data.res==true){
 			growl("success",data.mes);
 			$("#"+obj.id).closest('tr').fadeOut();
 		}
@@ -526,23 +526,23 @@ function borrar_observacion(cod,obj){
 		}
 		}});
 	  }
-	});	
+	});
 }
 
-/* 
-*	Función turnos 
+/*
+*	Función turnos
 *	@return: grid de turnos para modificar por usuario
 */
 function turnos(a, n){
 	$("#id_us").val(a);
 	$("#nombre_monitor").text(n);
-	$.ajax({			
-		url: "../php/get_turnos.php",			
-		dataType: "json",			
-		type: "POST",			
-		data: {id:a},			
-		success: function(data){		
-		if(data.res==true){		
+	$.ajax({
+		url: "../php/get_turnos.php",
+		dataType: "json",
+		type: "POST",
+		data: {id:a},
+		success: function(data){
+		if(data.res==true){
 			growl("success",data.mes);
 			$("#turnos_body").empty();
 			$("#turnos_body").html(data.bdy);
@@ -555,8 +555,8 @@ function turnos(a, n){
 	$(".bg-danger").fadeOut();
 }
 
-/* 
-*	Función cambiar_clave 
+/*
+*	Función cambiar_clave
 *	@return: id del usuario en el input hidden del modal
 */
 function cambiar_clave(a){
@@ -566,8 +566,8 @@ function cambiar_clave(a){
 	$(".bg-info").fadeOut();
 	$(".bg-danger").fadeOut();
 }
-/* 
-*	Función cambiar_clave 
+/*
+*	Función cambiar_clave
 *	@return: id del usuario en el input hidden del modal
 */
 function send_nuevaClave(){
@@ -577,13 +577,13 @@ function send_nuevaClave(){
 	var rpass = $("#r_pass").val();
 	if (pass.length>=5){
 		if(pass==rpass){
-		$.ajax({		
-			url: "../php/change_pass.php",			
-			dataType: "json",			
-			type: "POST",			
-			data: {	us:id_us, ps:pass },			
-			success: function(data){		
-			if(data.res==true){					
+		$.ajax({
+			url: "../php/change_pass.php",
+			dataType: "json",
+			type: "POST",
+			data: {	us:id_us, ps:pass },
+			success: function(data){
+			if(data.res==true){
 				//alert(data.mes);
 				$(".bg-danger").fadeOut();
 				$(".bg-info").html("<i class='fa fa-check'></i> Contraseña cambiada con éxito");
@@ -604,21 +604,21 @@ function send_nuevaClave(){
 	}
 
 }
-/* 
-*	Función send_recuperar 
+/*
+*	Función send_recuperar
 *	@return: confirmación de cambio de confirmacióntraseña
 */
 function send_recuperar(){
 	$("#send_recuperar").addClass("disabled");
 	var r_email = $("#r_email").val();
 	if(validarEmail(r_email)){
-		$.ajax({		
-			url: "../php/recovery_pass.php",			
-			dataType: "json",			
-			type: "POST",			
-			data: {remail:r_email},			
-			success: function(data){		
-			if(data.res==true){					
+		$.ajax({
+			url: "../php/recovery_pass.php",
+			dataType: "json",
+			type: "POST",
+			data: {remail:r_email},
+			success: function(data){
+			if(data.res==true){
 				//alert(data.mes);
 				$(".bg-info").html("<i class='fa fa-check'></i> En unos minutos podrá encontrar un mensaje en su correo <br>("+r_email+")<br>  un enlace que lo llevará al formulario de restauración de contraseña.");
 				$(".bg-info").fadeIn();
@@ -633,19 +633,19 @@ function send_recuperar(){
 	}
 }
 
-/* 
-*	Action logout 
+/*
+*	Action logout
 *	@return: destroy session
 */
 function logout(){
-	$.ajax({			
-	url: "../php/logout.php",			
-	dataType: "json",			
-	type: "POST",			
-	data: {},			
-	success: function(data){		
-	if(data.res==true){					
-		$(location).attr('href',data.mes); 
+	$.ajax({
+	url: "../php/logout.php",
+	dataType: "json",
+	type: "POST",
+	data: {},
+	success: function(data){
+	if(data.res==true){
+		$(location).attr('href',data.mes);
 	}
 	}});
 }
@@ -659,7 +659,7 @@ function refresh(fn){
 	}, time);
 }
 /*
-*	RefreshTable function 
+*	RefreshTable function
 * 	return RefreshTable
 */
 function RefreshTable(tableId, urlData)
@@ -683,7 +683,7 @@ function RefreshTable(tableId, urlData)
     }
 
 /*
-*	Growl function 
+*	Growl function
 * 	return growl alert
 */
 function growl(tipo,mes,reload){
@@ -719,7 +719,7 @@ function growl(tipo,mes,reload){
 		animate: {enter: 'animated flipInY',exit: 'animated flipOutX'}
 	});
 	if(!reload){
-		//setTimeout ("recargar()", 3500); 
+		//setTimeout ("recargar()", 3500);
 	}
 }
 /*
@@ -729,10 +729,10 @@ function growl(tipo,mes,reload){
 function get_chardata_observaciones(opt){
 	switch(opt){
 		case 1:
-			$.ajax({            
-		    url: "../php/get_chartdata_obs.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_obs.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Bar({
 				        element: 'morris-area-chart-observaciones',
@@ -744,14 +744,14 @@ function get_chardata_observaciones(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 		case 2:
-			$.ajax({            
-		    url: "../php/get_chartdata_obs_dia.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_obs_dia.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Line({
 				        element: 'morris-area-chart-observaciones-diarias',
@@ -763,7 +763,7 @@ function get_chardata_observaciones(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 	}
@@ -775,10 +775,10 @@ function get_chardata_observaciones(opt){
 function get_chardata_solicitudes(opt){
 	switch(opt){
 		case 1:
-			$.ajax({            
-		    url: "../php/get_chartdata_sol.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_sol.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Bar({
 				        element: 'morris-area-chart-solicitudes',
@@ -790,14 +790,14 @@ function get_chardata_solicitudes(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 		case 2:
-			$.ajax({            
-		    url: "../php/get_chartdata_sol_dia.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_sol_dia.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Area({
 				        element: 'morris-area-chart-solicitudes-diarias',
@@ -809,7 +809,7 @@ function get_chardata_solicitudes(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 	}
@@ -821,10 +821,10 @@ function get_chardata_solicitudes(opt){
 function get_chardata_reservas(opt){
 	switch(opt){
 		case 1:
-			$.ajax({            
-		    url: "../php/get_chartdata_res.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_res.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Bar({
 				        element: 'morris-area-chart-reservas',
@@ -836,14 +836,14 @@ function get_chardata_reservas(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 		case 2:
-			$.ajax({            
-		    url: "../php/get_chartdata_res_dia.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_res_dia.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Line({
 				        element: 'morris-area-chart-reservas-diarias',
@@ -855,7 +855,7 @@ function get_chardata_reservas(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 	}
@@ -865,11 +865,11 @@ function get_chardata_reservas(opt){
 *	@return: array de conteos de reservas [Donut chart]
 */
 function get_chardata_d_res(){
-	
-	$.ajax({            
-    url: "../php/get_chartdata_donut_res.php?method=fetchdata",         
-    dataType: "json",                       
-    success: function(r){      
+
+	$.ajax({
+    url: "../php/get_chartdata_donut_res.php?method=fetchdata",
+    dataType: "json",
+    success: function(r){
     		var sol_data = r.data;
     		$("#btn_details").append("Total de reservas: "+r.total);
 		    Morris.Donut({
@@ -877,7 +877,7 @@ function get_chardata_d_res(){
 		        data: sol_data,
 		        resize: true
 		    });
-        } 
+        }
     });
 }
 /*
@@ -885,11 +885,11 @@ function get_chardata_d_res(){
 *	@return: array de conteos de observaciones [Donut chart]
 */
 function get_chardata_d_obs(){
-	
-	$.ajax({            
-    url: "../php/get_chartdata_donut_obs.php?method=fetchdata",         
-    dataType: "json",                       
-    success: function(r){      
+
+	$.ajax({
+    url: "../php/get_chartdata_donut_obs.php?method=fetchdata",
+    dataType: "json",
+    success: function(r){
     		var sol_data = r.data;
     		$("#btn_details").append("Total de observaciones: "+r.total);
 		    Morris.Donut({
@@ -897,7 +897,7 @@ function get_chardata_d_obs(){
 		        data: sol_data,
 		        resize: true
 		    });
-        } 
+        }
     });
 }
 /*
@@ -905,11 +905,11 @@ function get_chardata_d_obs(){
 *	@return: array de conteos de solicitudes de servicio técnico y comunicaciones [Donut chart]
 */
 function get_chardata_d_sol(){
-	
-	$.ajax({            
-    url: "../php/get_chartdata_donut_sol.php?method=fetchdata",         
-    dataType: "json",                       
-    success: function(r){      
+
+	$.ajax({
+    url: "../php/get_chartdata_donut_sol.php?method=fetchdata",
+    dataType: "json",
+    success: function(r){
     		var sol_data = r.data;
     		$("#btn_details").append("Total de solicitudes: "+r.total);
 		    Morris.Donut({
@@ -917,7 +917,7 @@ function get_chardata_d_sol(){
 		        data: sol_data,
 		        resize: true
 		    });
-        } 
+        }
     });
 }
 
@@ -932,11 +932,11 @@ function get_flujoFranjas(sala){
 	$("#s1_mes").empty();
 	$("#s2_mes").empty();
 	$("#s3_mes").empty();
-	$.ajax({            
-    url: "../php/get_chartdata_flx.php?method=fetchdata",         
+	$.ajax({
+    url: "../php/get_chartdata_flx.php?method=fetchdata",
     dataType: "json",
-    type: "POST",			
-	data: {s:sala},                       
+    type: "POST",
+	data: {s:sala},
     success: function(data){
     		$("#s"+sala).empty();
     		$("#s"+sala).html(data.cajas);
@@ -952,7 +952,7 @@ function get_flujoFranjas(sala){
 					  resize:true
 			    });
 			};
-        } 
+        }
     });
     get_flx_mes(sala);
 }
@@ -962,12 +962,12 @@ function get_flujoFranjas(sala){
 */
 function get_flx_mes(s){
 	var months = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-	$.ajax({            
-    url: "../php/get_chartdata_fxm.php?method=fetchdata",         
-    dataType: "json",  
+	$.ajax({
+    url: "../php/get_chartdata_fxm.php?method=fetchdata",
+    dataType: "json",
     type: "POST",
-    data: {sala:s},                       
-    success: function(data){      
+    data: {sala:s},
+    success: function(data){
     		var month_data = data;
 		    Morris.Area({
 		        element: 's'+s+'_mes',
@@ -980,7 +980,7 @@ function get_flx_mes(s){
 		        hideHover: 'auto',
 		        resize: true
 		    });
-        } 
+        }
     });
 }
 /*
@@ -989,10 +989,10 @@ function get_flx_mes(s){
 */
 function get_chardata(){
 
-	$.ajax({            
-    url: "../php/get_chartdata.php?method=fetchdata",         
-    dataType: "json",                       
-    success: function(data){      
+	$.ajax({
+    url: "../php/get_chartdata.php?method=fetchdata",
+    dataType: "json",
+    success: function(data){
     		var month_data = data;
 		    Morris.Line({
 		        element: 'morris-area-chart',
@@ -1004,22 +1004,40 @@ function get_chardata(){
 		        hideHover: 'auto',
 		        resize: true
 		    });
-        } 
+        }
     });
 }
 function get_chardata_d(){
-	$.ajax({            
-    url: "../php/get_chartdata_donut.php?method=fetchdata",         
-    dataType: "json",                       
-    success: function(data){      
+	$.ajax({
+    url: "../php/get_chartdata_donut.php?method=fetchdata",
+    dataType: "json",
+    success: function(data){
     		var sala_data = data;
 		    Morris.Donut({
 		        element: 'morris-donut-chart',
 		        data: sala_data,
 		        resize: true
 		    });
-        } 
+        }
     });
+}
+/*
+*	function set_turn
+*	@return: respuesta al guardado de turnos
+*/
+function set_turn(d, t, e, u){
+	console.log("Guardando => dia:"+d+" turno:"+t+" Espacio: "+e+" Usuario:"+u+".");
+	$.ajax({
+		url: "../php/set_turn.php",
+		dataType: "json",
+		type: "POST",
+		data: {dia: d, turno: t, espacio:e, usuario:u},
+		success: function(data){
+		if(data.res==true){
+			growl("success",data.mes);
+			console.log(data.debug);
+		}
+	}});
 }
 /*
 *	function mostrarDetalle
@@ -1036,18 +1054,18 @@ function ocultarDetalle(id){
 	$("#od-"+id).hide();
 	$("#md-"+id).show();
 }
-/* 
-*	Función get_detalle 
+/*
+*	Función get_detalle
 *	@return: información detallada del registro a consultar
 */
 function get_detalle(id,tipo){
-	$.ajax({			
-	url: "../php/get_detalle.php",			
-	dataType: "json",			
-	type: "POST",			
-	data: {id:id,tipo:tipo},			
-	success: function(data){		
-	if(data.res==true){	
+	$.ajax({
+	url: "../php/get_detalle.php",
+	dataType: "json",
+	type: "POST",
+	data: {id:id,tipo:tipo},
+	success: function(data){
+	if(data.res==true){
 		switch(tipo){
 			case 3:
 				$(".modal-body").html(data.mes);
@@ -1056,7 +1074,7 @@ function get_detalle(id,tipo){
 			default:
 				$("#detalle-sol").html(data.mes);
 			break;
-		}				
+		}
 	}
 	else{
 		growl("danger",data.mes);
@@ -1064,18 +1082,18 @@ function get_detalle(id,tipo){
 	}});
 }
 
-/* 
-*	Función cambiar_estado 
+/*
+*	Función cambiar_estado
 *	@return: bool
 */
 function cambiar_estado(id,estado,tipo){
-	$.ajax({			
-	url: "../php/cambiar_estado.php",			
-	dataType: "json",			
-	type: "POST",			
-	data: {id:id,tipo:tipo,estado:estado},			
-	success: function(data){		
-	if(data.res==true){					
+	$.ajax({
+	url: "../php/cambiar_estado.php",
+	dataType: "json",
+	type: "POST",
+	data: {id:id,tipo:tipo,estado:estado},
+	success: function(data){
+	if(data.res==true){
 		growl("info",data.mes);
 		ocultarDetalle(id);
 		//recargar();

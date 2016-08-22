@@ -3,13 +3,13 @@
 *	@return: carga los contenidos de cada sala via AJAX
 */
 function get_flujoData(){
-	$.ajax({            
-	    url: "../php/get_chartdata_flx.php?method=fetchdata",         
-	    dataType: "json",                       
-	    success: function(data){      
+	$.ajax({
+	    url: "../php/get_chartdata_flx.php?method=fetchdata",
+	    dataType: "json",
+	    success: function(data){
 	    		var data = data;
 	    		$("#s1").html(data.cajas[0]);
-	        } 
+	        }
 	});
 }
 /*
@@ -19,10 +19,10 @@ function get_flujoData(){
 function get_chardata_solicitudes(opt){
 	switch(opt){
 		case 1:
-			$.ajax({            
-		    url: "../php/get_chartdata_sol.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_sol.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Bar({
 				        element: 'morris-area-chart-solicitudes',
@@ -34,14 +34,14 @@ function get_chardata_solicitudes(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 		case 2:
-			$.ajax({            
-		    url: "../php/get_chartdata_sol_dia.php?method=fetchdata",         
-		    dataType: "json",                       
-		    success: function(data){      
+			$.ajax({
+		    url: "../php/get_chartdata_sol_dia.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
 		    		var month_data = data;
 				    Morris.Area({
 				        element: 'morris-area-chart-solicitudes-diarias',
@@ -53,7 +53,7 @@ function get_chardata_solicitudes(opt){
 				        hideHover: 'auto',
 				        resize: true
 				    });
-		        } 
+		        }
 		    });
 		break;
 	}
@@ -68,17 +68,17 @@ function get_chardata_solicitudes(opt){
 *	@return: Planilla general de flujo mensual
 */
 function get_planilla(s,m,c){
-	$.ajax({            
-		    url: "../php/get_planilla.php?method=fetchdata",         
-		    dataType: "json",			
-			type: "POST",  
+	$.ajax({
+		    url: "../php/get_planilla.php?method=fetchdata",
+		    dataType: "json",
+			type: "POST",
 		    data: {
-		    	s:s, 
+		    	s:s,
 		    	m:m
-		    },                     
-		    success: function(r){      
+		    },
+		    success: function(r){
 		    	$("#"+c).html(r.table);
-		        } 
+		        }
 		    });
 }
 /*
@@ -88,20 +88,20 @@ function get_planilla(s,m,c){
 function get_chart_i(s,m,canvas,ini,fin){
 	var url = "../php/get_chart_group.php?method=fetchdata";
 	var labels = 'dias';
-	$.ajax({            
-		    url: url,         
-		    dataType: "json",			
-			type: "POST",  
+	$.ajax({
+		    url: url,
+		    dataType: "json",
+			type: "POST",
 		    data: {
-		    	s:s, 
+		    	s:s,
 		    	m:m,
 		    	i:ini,
 		    	f:fin
-		    },                     
-		    success: function(r){      
+		    },
+		    success: function(r){
 		    	//$("#"+c).html(r.table);
 		    	graficar(canvas,r.rows,labels);
-		        } 
+		        }
 		    });
 }
 /*
@@ -123,24 +123,24 @@ function get_chart(s,m,c,canvas,id){
 			var labels = 'horas';
 		break;
 	}
-	$.ajax({            
-		    url: url,         
-		    dataType: "json",			
-			type: "POST",  
+	$.ajax({
+		    url: url,
+		    dataType: "json",
+			type: "POST",
 		    data: {
-		    	s:s, 
+		    	s:s,
 		    	m:m,
 		    	i:id
-		    },                     
-		    success: function(r){      
+		    },
+		    success: function(r){
 		    	//$("#"+c).html(r.table);
 		    	graficar(canvas,r.rows,labels);
 
-		        } 
+		        }
 		    });
 }
 function graficar(cv,dt,tlabl){
-	var ctx = $("#"+cv).get(0).getContext("2d");
+				var ctx = $("#"+cv).get(0).getContext("2d");
         // This will get the first returned node in the jQuery collection.
         switch(tlabl){
         	case "dias":
@@ -237,12 +237,12 @@ function go_to(cont,req,sala,canvas){
 *	@return: combo con meses
 */
 function cbx_mes(){
-	$.ajax({            
-		    url: "../php/get_cbx_meses_semestre.php?method=fetchdata",         
-		    dataType: "json",			
-			type: "POST",                     
-		    success: function(resp){      
+	$.ajax({
+		    url: "../php/get_cbx_meses_semestre.php?method=fetchdata",
+		    dataType: "json",
+			type: "POST",
+		    success: function(resp){
 		    	$("#combo_mes").html(resp.res);
-		        } 
+		        }
 		    });
 }
