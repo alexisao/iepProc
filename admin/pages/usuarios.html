@@ -201,7 +201,7 @@
                                     </div>
                                     </form>
                                 </div>
-                                <button type="button" data-toggle="modal" data-target="#get_turnos_modal" class="btn btn-primary btn-lg btn-block">Ver horarios completos</button>
+                                <button type="button" data-toggle="modal" data-target="#get_turnos_modal" id="get_turnos_button" class="btn btn-primary btn-lg btn-block">Ver horarios completos</button>
                             </div>
                             <!-- /.col-lg-4 -->
                         </div>
@@ -393,10 +393,16 @@
         $(document).ready(function() {
          oTable = $('#datatables-observaciones').dataTable({responsive: true});
         get_usuarios(oTable);
-        get_all_turnos('p_cont_s1',1);
-        get_all_turnos('p_cont_s2',2);
-        get_all_turnos('p_cont_s3',3);
-        get_all_turnos('p_cont_s4',4);
+        //get_all_turnos('p_cont_s1',1);
+        //get_all_turnos('p_cont_s2',2);
+        //get_all_turnos('p_cont_s3',3);
+        //get_all_turnos('p_cont_s4',4);
+        $("#get_turnos_button").click(function(){
+          get_all_turnos('p_cont_s1',1);
+          get_all_turnos('p_cont_s2',2);
+          get_all_turnos('p_cont_s3',3);
+          get_all_turnos('p_cont_s4',4);
+        });
     });
     </script>
     <script language="javascript">

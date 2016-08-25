@@ -1119,6 +1119,7 @@ function get_all_turnos(c, e){
 	data: {e:e},
 	success: function(data){
 	if(data.res==true){
+		$("#"+c).empty();
 		$("#"+c).html(data.bdy);
 	}
 	else{
