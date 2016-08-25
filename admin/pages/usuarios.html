@@ -201,7 +201,7 @@
                                     </div>
                                     </form>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+                                <button type="button" data-toggle="modal" data-target="#get_turnos_modal" class="btn btn-primary btn-lg btn-block">Ver horarios completos</button>
                             </div>
                             <!-- /.col-lg-4 -->
                         </div>
@@ -257,7 +257,6 @@
     </div>
 
     <!-- Bootstrap Modal -->
-
     <div class="modal fade" id="modal_turnos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -272,6 +271,88 @@
                 </div>
                 <input type="hidden" class="form-control" id="id_us">
                 <div class="row" id="turnos_body"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Modal para traer turnos -->
+    <div class="modal fade" id="get_turnos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Turnos de monitoría</h4>
+          </div>
+          <div class="modal-body" id="body_turnos_modal">
+                <div class="row" id="todos_body" style="padding:10px 10px 10px 10px;">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs">
+                      <li class="active"><a href="#sala1" data-toggle="tab">Sala 1</a>
+                      </li>
+                      <li><a href="#sala2" data-toggle="tab">Sala 2</a>
+                      </li>
+                      <li><a href="#sala3" data-toggle="tab">Sala 3</a>
+                      </li>
+                      <li><a href="#sala4" data-toggle="tab">Soporte</a>
+                      </li>
+                  </ul>
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                      <div class="tab-pane fade in active" id="sala1">
+                        <div id="export_s1">
+                          <h4 id="title_s1">Turnos Sala 1</h4>
+                          <p id="p_cont_s1"></p>
+                          <p>
+                            <form action="../php/ficheroexcel.php" method="post" target="_blank" id="FormularioExportacion_s1">
+                              <div class="btn btn-success" id="botonExcel_s1" ><i class="fa fa-file-excel-o"></i>  Exportar a Excel</div>
+                              <input type="hidden" id="datos_a_enviar_1" name="datos_a_enviar" />
+                            </form>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in " id="sala2">
+                        <div id="export_s2">
+                          <h4 id="title_s2">Turnos Sala 2</h4>
+                          <p id="p_cont_s2"></p>
+                          <p>
+                            <form action="../php/ficheroexcel.php" method="post" target="_blank" id="FormularioExportacion_s2">
+                              <div class="btn btn-success" id="botonExcel_s2" ><i class="fa fa-file-excel-o"></i>  Exportar a Excel</div>
+                              <input type="hidden" id="datos_a_enviar_2" name="datos_a_enviar" />
+                            </form>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in " id="sala3">
+                        <div id="export_s3">
+                          <h4 id="title_s3">Turnos Sala 3</h4>
+                          <p id="p_cont_s3"></p>
+                          <p>
+                            <form action="../php/ficheroexcel.php" method="post" target="_blank" id="FormularioExportacion_s3">
+                              <div class="btn btn-success" id="botonExcel_s3" ><i class="fa fa-file-excel-o"></i>  Exportar a Excel</div>
+                              <input type="hidden" id="datos_a_enviar_3" name="datos_a_enviar" />
+                            </form>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade in " id="sala4">
+                        <div id="export_s4">
+                          <h4 id="title_s4">Turnos Soporte</h4>
+                          <p id="p_cont_s4"></p>
+                          <p>
+                            <form action="../php/ficheroexcel.php" method="post" target="_blank" id="FormularioExportacion_s4">
+                              <div class="btn btn-success" id="botonExcel_s4" ><i class="fa fa-file-excel-o"></i>  Exportar a Excel</div>
+                              <input type="hidden" id="datos_a_enviar_4" name="datos_a_enviar" />
+                            </form>
+                          </p>
+                        </div>
+                      </div>
+                  </div>
 
           </div>
           <div class="modal-footer">
@@ -312,7 +393,30 @@
         $(document).ready(function() {
          oTable = $('#datatables-observaciones').dataTable({responsive: true});
         get_usuarios(oTable);
-
+        get_all_turnos('p_cont_s1',1);
+        get_all_turnos('p_cont_s2',2);
+        get_all_turnos('p_cont_s3',3);
+        get_all_turnos('p_cont_s4',4);
+    });
+    </script>
+    <script language="javascript">
+    $(document).ready(function() {
+    	$("#botonExcel_s1").click(function(event) {
+      		$("#datos_a_enviar_1").val( $("<div>").append( $("#export_s1").eq(0).clone()).html());
+      		$("#FormularioExportacion_s1").submit();
+      });
+    	$("#botonExcel_s2").click(function(event) {
+      		$("#datos_a_enviar_2").val( $("<div>").append( $("#export_s2").eq(0).clone()).html());
+      		$("#FormularioExportacion_s2").submit();
+      });
+    	$("#botonExcel_s3").click(function(event) {
+      		$("#datos_a_enviar_3").val( $("<div>").append( $("#export_s3").eq(0).clone()).html());
+      		$("#FormularioExportacion_s1").submit();
+      });
+    	$("#botonExcel_s4").click(function(event) {
+      		$("#datos_a_enviar_4").val( $("<div>").append( $("#export_s4").eq(0).clone()).html());
+      		$("#FormularioExportacion_s4").submit();
+      });
     });
     </script>
 

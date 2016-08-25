@@ -1036,6 +1036,9 @@ function set_turn(d, t, e, u){
 		if(data.res==true){
 			growl("success",data.mes);
 			console.log(data.debug);
+		}else{
+			growl("danger",data.mes);
+			console.log(data.debug);
 		}
 	}});
 }
@@ -1097,6 +1100,26 @@ function cambiar_estado(id,estado,tipo){
 		growl("info",data.mes);
 		ocultarDetalle(id);
 		//recargar();
+	}
+	else{
+		growl("danger",data.mes);
+	}
+	}});
+}
+
+/*
+*	Función get_all_turnos: trae todos los turnos de los monitores discriminados por salas y soporte
+*	@return: HTMLContent
+*/
+function get_all_turnos(c, e){
+	$.ajax({
+	url: "../php/get_all_turnos.php",
+	dataType: "json",
+	type: "POST",
+	data: {e:e},
+	success: function(data){
+	if(data.res==true){
+		$("#"+c).html(data.bdy);
 	}
 	else{
 		growl("danger",data.mes);

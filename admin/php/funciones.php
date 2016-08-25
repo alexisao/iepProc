@@ -12,28 +12,28 @@ class funciones{
 	}
 
 	/*Funcion validar datos*/
-	function validar($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")   
-	{  
-	  $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;  
-	  switch ($theType) {  
-	   	case "text":  
-	      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";  
-		break;      
-	    case "long":  
-		case "int":  
-		  $theValue = ($theValue != "") ? intval($theValue) : "NULL";  
-		break;  
-	    case "double":  
-	      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";  
-		break;  
-	    case "date":  
-		  $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";  
-	    break;  
-		case "defined":  
-	      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;  
-		break;  
-	 }  
-	 return $theValue;  
+	function validar($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
+	{
+	  $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+	  switch ($theType) {
+	   	case "text":
+	      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+		break;
+	    case "long":
+		case "int":
+		  $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+		break;
+	    case "double":
+	      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+		break;
+	    case "date":
+		  $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+	    break;
+		case "defined":
+	      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+		break;
+	 }
+	 return $theValue;
 	}
 
 	function isAjax()
@@ -55,7 +55,7 @@ class funciones{
 		$s_f = $semestre_fin;
 		#extraemos año_i, año_f
 		$row_s_i = split('-', $s_i);
-		$row_s_f = split('-', $s_f); 
+		$row_s_f = split('-', $s_f);
 		$a_s_i = $row_s_i[0];
 		$a_s_f = $row_s_f[0];
 
@@ -82,15 +82,15 @@ class funciones{
 				$fecha_i = $a_s_f."-".$m."-"."01";
 				$fecha_f = $a_s_f."-".$m."-"."31";
 			}
-			
-		}	
+
+		}
 
 		$query="SELECT COUNT(fe_id) AS conteo FROM tbl_flujo_estudiantes WHERE fe_sala=".$sala." AND fe_hora_entrada BETWEEN '".$h_i."' AND '".$h_f."' AND fe_log_fecha BETWEEN '".$fecha_i." 00:00:00' AND '".$fecha_f." 23:59:59'";
 		//echo $query."<br>";
 		$rq = mysql_query($query);
 		$fq = mysql_fetch_array($rq);
 		return $fq[0];
-	}	 
+	}
 
 	function get_cant_students_x_h($sala, $fecha,$h_i,$h_f){
 		$con = new con();
@@ -101,19 +101,19 @@ class funciones{
 		$rq = mysql_query($query);
 		$fq = mysql_fetch_array($rq);
 		return $fq[0];
-	}	
+	}
 
 	function get_total_students_x_d($sala, $mes, $dia){
 		include("../semestre.php");
 		$con = new con();
 		$con->connect();
-		
+
 		#recorremos semestre
 		$arr_dias_semana=array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
 
 		#acum
 		$acum = 0;
-		
+
 		$day = split(" ",$semestre_ini);
 		$sem_i = $day[0];
 		$sem_f = $semestre_fin;
@@ -140,13 +140,13 @@ class funciones{
 		include("../semestre.php");
 		$con = new con();
 		$con->connect();
-		
+
 		#recorremos semestre
 		$arr_dias_semana=array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
 
 		#acum
 		$acum = 0;
-		
+
 		$day = split(" ",$semestre_ini);
 		$sem_i = $day[0];
 		$sem_f = $semestre_fin;
@@ -167,7 +167,18 @@ class funciones{
 		}
 		//echo "<br>Total acum: ".$acum;
 		return $acum;
-	}	
+	}
+
+	function check_turno($d,$t,$e){
+		$query="SELECT COUNT(tu_id) FROM tbl_turnos WHERE tu_espacio=".$e." AND tu_dia=".$d." AND tu_turno =".$t.";;";
+		$rq = mysql_query($query);
+		$re = mysql_fetch_array($rq);
+		if($re[0]>0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 }
 ?>
