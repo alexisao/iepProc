@@ -43,6 +43,7 @@ if ($fun->check_turno($d,$t,$e)) {
 	}else{
 		#significa que no existe registro previo y que tenemos que crearlo
 		$sql_create = "INSERT INTO tbl_turnos (tu_us_id, tu_dia, tu_turno, tu_espacio) VALUES (".$u.",".$d.",".$t.",".$e.")";
+		$debug .= "SQL_INSERT: ".$sql_create;
 		$resp=mysql_query($sql_create);
 		if($resp){
 			$res=true;
