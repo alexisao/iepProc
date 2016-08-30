@@ -858,7 +858,40 @@ function get_chardata_reservas(opt){
 		        }
 		    });
 		break;
+		case 3:
+			$.ajax({
+		    url: "../php/get_chartdata_res_dia_cendopu.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
+		    		var month_data = data;
+				    Morris.Line({
+				        element: 'morris-area-chart-reservas-diarias',
+				        data: month_data,
+				        xkey: 'period',
+				        ykeys: ['computo'],
+				        labels: ['Sala de Cómputo'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        }
+		    });
+		break;
 	}
+}
+/*
+*	function get_chardata_exp
+*	@return: html de conteos de estudiantes por programa [HTML]
+*/
+function get_chardata_exp(id){
+	$.ajax({
+    url: "../php/get_est_x_prog.php",
+    dataType: "json",
+    success: function(d){
+    		var html = d.res;
+    		$("#"+id).append(html);
+        }
+    });
 }
 /*
 *	function get_chardata_d_res
