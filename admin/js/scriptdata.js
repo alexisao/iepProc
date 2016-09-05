@@ -884,14 +884,37 @@ function get_chardata_reservas(opt){
 *	@return: html de conteos de estudiantes por programa [HTML]
 */
 function get_chardata_exp(id){
-	$.ajax({
-    url: "../php/get_est_x_prog.php",
-    dataType: "json",
-    success: function(d){
-    		var html = d.res;
-    		$("#"+id).append(html);
-        }
-    });
+	switch(id){
+		case "estxprog":
+			$.ajax({
+		    url: "../php/get_est_x_prog.php",
+		    dataType: "json",
+		    success: function(d){
+		    		var html = d.res;
+		    		$("#"+id).append(html);
+		        }
+		    });
+		break;
+		case "morris-bar-chart-est-mes":
+			$.ajax({
+		    url: "../php/get_est_x_mes.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
+				    Morris.Bar({
+				        element: id,
+				        data: data.dta,
+				        xkey: 'mes',
+				        ykeys: ['est'],
+				        labels: ['Estudiantes'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        }
+		    });
+		break;
+	}
+	
 }
 /*
 *	function get_chardata_d_res

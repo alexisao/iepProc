@@ -2,6 +2,7 @@
 session_start();
 
 require("../php/funciones.php");
+require("../semestre.php");
 include("template_reporte_salas.php");
 
 $fun = new funciones();
@@ -16,8 +17,8 @@ $cajas = array();
 
 /*datos que se cargarán en las gráficas*/
 /*Datos del semestre*/
-$s_inicio="2015-06-02";
-$s_fin="2016-03-30";
+$s_inicio=$semestre_ini;
+$s_fin=$semestre_fin;
 $tinicio=" 00:00:00";
 $tfinal=" 23:59:59";
 $sala = $_POST["s"];

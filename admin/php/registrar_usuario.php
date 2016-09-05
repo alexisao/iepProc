@@ -40,7 +40,7 @@ if($rows[0]!=0){
 		$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
 	}
 }
-
+$response->con = $selectSQL;
 $response->res = $res;
 $response->mes = $mes;
 echo json_encode($response);
