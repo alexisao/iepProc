@@ -135,11 +135,11 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Detalle de Horas
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Horas Pico y Horas Valle
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="planilla_mes_s4"></div>
+                            <div id="morris-bar-chart-hpico"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -165,19 +165,6 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                    <div class="panel panel-default fade">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Horas Pico y Valle
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart-hpyv"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-
                 </div>
                 <!-- /.col-lg-8 -->
                 <div class="col-lg-4">
@@ -231,6 +218,7 @@
         get_chardata_reservas(3);
         get_chardata_exp('estxprog');
         get_chardata_exp('morris-bar-chart-est-mes');
+        get_chardata_exp('morris-bar-chart-hpico');
     </script>
 
 

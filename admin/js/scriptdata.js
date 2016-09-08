@@ -913,6 +913,24 @@ function get_chardata_exp(id){
 		        }
 		    });
 		break;
+		case "morris-bar-chart-hpico":
+			$.ajax({
+		    url: "../php/get_hora_pico.php?method=fetchdata",
+		    dataType: "json",
+		    success: function(data){
+				    Morris.Bar({
+				        element: id,
+				        data: data.dta,
+				        xkey: 'hrs',
+				        ykeys: ['cnt'],
+				        labels: ['Cantidad Estudiantes'],
+				        pointSize: 2,
+				        hideHover: 'auto',
+				        resize: true
+				    });
+		        }
+		    });
+		break;
 	}
 	
 }

@@ -90,7 +90,7 @@ for ($i=0; $i < sizeof($array_plan); $i++) {
 }
 $html .= '</tbody></table></div>';
 #resultado
-	$res = $html;
+$res = $html;
 
 $response->res=$res;
 echo json_encode($response);
