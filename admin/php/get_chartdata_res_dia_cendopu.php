@@ -34,23 +34,23 @@ $viernes=date('Y-m-d',strtotime($lunes.'+5 day'));
 $tinicio=" 00:00:00";
 $tfinal=" 23:59:59";
 
+$msg="";
+
 /*Construimos arreglo de datos*/
 for ($i=1; $i <=date("t") ; $i++) { 
 	/*Cuenta para las solicitudes de Soporte se_tipo_sol=1*/
-	$q1="SELECT * FROM tbl_reservas WHERE re_tipo_sol=1 AND re_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
+	$q1="SELECT * FROM tbl_flujo_estudiantes WHERE fe_sala=4 AND re_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
+	$msg .= "Query: ".$q1;
 	$r1=mysql_query($q1,$con->connect());
 	$c1=mysql_num_rows($r1);
-	/*Cuenta para las solicitudes de Comunicaciones se_tipo_sol=2*/
-	$q2="SELECT * FROM tbl_reservas WHERE re_tipo_sol=2 AND re_log_fecha BETWEEN '".$dias[$i].$tinicio."' AND '".$dias[$i].$tfinal."';";
-	$r2=mysql_query($q2,$con->connect());
-	$c2=mysql_num_rows($r2);
 	$datos[]=array(
 		"period"=>$dias[$i],
 		"computo" =>$c1,
-		"clases" =>$c2,
 	);
 	//$response->data=$datos[$i];
 }
-echo json_encode($datos);
+$response->ms=$msg;
+$response->dt=$datos;
+echo json_encode($response);
 
 ?>

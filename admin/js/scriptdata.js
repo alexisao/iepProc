@@ -863,7 +863,7 @@ function get_chardata_reservas(opt){
 		    url: "../php/get_chartdata_res_dia_cendopu.php?method=fetchdata",
 		    dataType: "json",
 		    success: function(data){
-		    		var month_data = data;
+		    		var month_data = data.dt;
 				    Morris.Line({
 				        element: 'morris-area-chart-reservas-diarias',
 				        data: month_data,

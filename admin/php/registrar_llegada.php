@@ -6,6 +6,8 @@ require("../php/funciones.php");
 $fun = new funciones();
 if(!$fun->isAjax()){header ("Location: ../pages/index.html");}
 
+date_default_timezone_set('America/Bogota');
+
 /*recibimos variables*/
 $codigo = $_POST['codigo'];
 $pc = $_POST['pc'];
