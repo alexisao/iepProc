@@ -2,6 +2,7 @@
 session_start();
 
 require("../php/funciones.php");
+require("../semestre.php");
 
 $fun = new funciones();
 if(!$fun->isAjax()){header ("Location: ../pages/index.html");}
@@ -26,8 +27,8 @@ if($dhoy!=0){
 //echo "<br> ->Lunes: ".$lunes."<br>";
 
 /* Definimos el semestre */
-$s_ini="2015-01-02 00:00:00";
-$s_fin="2015-07-01 23:59:59";
+$s_ini=$semestre_ini;
+$s_fin=$semestre_fin;
 
 /*Construimos el arreglo de días*/
 $dias=array();
