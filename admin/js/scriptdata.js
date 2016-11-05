@@ -211,23 +211,23 @@ function get_reservas(oTable){
 	}});
 }
 /*
-*	Función get_registrados
-*	@return: arreglo para datatable con los estudiantes registrados
+*	Función get_estudiante
+*	@return: JSON con información de usuarios relacionados con la busqueda ingresada.
 */
-function get_registrados(oTable){
+function get_estudiante(str){
 	$.ajax({
 	url: "../php/get_registrados.php?method=fetchdata",
 	dataType: "json",
+	type:'POST',
+	data:{dt:str},
 	success: function(data){
-		//oTable.fnClearTable();
-		for(var i = 0; i < data.length; i++) {
-			oTable.fnAddData([
-			data[i][0],
-			data[i][1],
-			data[i][2]
-			]);
-		}
+		build_resp(data);
 	}});
+}
+
+function build_resp(dt)
+{
+	
 }
 
 /*

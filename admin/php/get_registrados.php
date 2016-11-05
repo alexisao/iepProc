@@ -9,10 +9,13 @@ if(!$fun->isAjax()){header ("Location: ../pages/index.html");}
 $con = new con();
 $con->connect();
 
+$data = $_POST["dt"];
+
 $response = new StdClass;
 
 /*Consulta a la Bd*/
-$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_estado < 99";
+$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' OR es_codigo like '%".$data."%' AND es_estado < 99 ";
+echo $selectSQL;
 
 $row_cons = mysql_query($selectSQL);
 
