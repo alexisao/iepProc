@@ -214,6 +214,20 @@ function get_reservas(oTable){
 *	Función get_estudiante
 *	@return: JSON con información de usuarios relacionados con la busqueda ingresada.
 */
+function build_resp(dt)
+{
+	var cont = ""
+	for (var i = dt.length - 1; i >= 0; i--) {
+		var cplan = '<div class="col-md-2"><span>'+dt[i][0]+'</span></div>';
+		var nombre = '<div class="col-md-5">'+dt[i][1]+'</div>';
+		var opc = '<div class="col-md-5">'+dt[i][2]+'</div>';
+		var html = '<div class="panel panel-default"><div class="panel-body">'+cplan+nombre+opc+'</div></div>';
+		cont = cont+html;
+	}
+	$("#table-resp").empty();
+	$("#table-resp").append(cont);
+}
+
 function get_estudiante(str){
 	$.ajax({
 	url: "../php/get_registrados.php?method=fetchdata",
@@ -223,11 +237,6 @@ function get_estudiante(str){
 	success: function(data){
 		build_resp(data);
 	}});
-}
-
-function build_resp(dt)
-{
-	
 }
 
 /*
