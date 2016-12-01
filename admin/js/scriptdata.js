@@ -214,20 +214,27 @@ function get_reservas(oTable){
 *	Función get_estudiante
 *	@return: JSON con información de usuarios relacionados con la busqueda ingresada.
 */
-function get_estudiante(str){
+function get_estudiante(str, obj){
 	$.ajax({
 	url: "../php/get_registrados.php?method=fetchdata",
 	dataType: "json",
 	type:'POST',
 	data:{dt:str},
 	success: function(data){
-		build_resp(data);
+		build_resp(data, obj);
 	}});
 }
 
-function build_resp(dt)
+function build_resp(dt, obj)
 {
-	
+	obj.fnClearTable();
+		for(var i = 0; i < dt.length; i++) {
+			obj.fnAddData([
+			dt[i][0],
+			dt[i][1],
+			dt[i][2]
+			]);
+		}
 }
 
 /*

@@ -39,6 +39,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
+        .dataTables_filter {display: none;}
         .search-box{width: 100%;}
     	.loading_box{
     		position:absolute;
@@ -296,15 +297,29 @@
     <script>
     get_user("#fld-email");
     $(document).ready(function() {
-        $("#btn_search").on("click", function(){ 
-            get_estudiante($("#inp_search").val());
-        });
-        /*var oTable = $('#datatables-registrados').dataTable({
+        var oTable = $('#datatables-registrados').dataTable({
             responsive: true,
             language: {
                 "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
             }
         });
+        get_estudiante(0, oTable);
+        $("#btn_search").on("click", function(){ 
+            get_estudiante($("#inp_search").val(), oTable);
+        });
+
+        /*
+        *   Ejecutar comando de búsqueda con ENTER
+        */
+        $(document).ready(function(){
+            $('#inp_search').keypress(function(e){   
+               if(e.which == 13){      
+                 get_estudiante($("#inp_search").val(), oTable);
+               }   
+            });     
+        });
+        
+        /*
         get_registrados(oTable);*/
         //$(".loading_box").fadeOut(10000);
     });

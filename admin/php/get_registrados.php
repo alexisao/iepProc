@@ -14,8 +14,12 @@ $data = $_POST["dt"];
 $response = new StdClass;
 
 /*Consulta a la Bd*/
-$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' OR es_codigo like '%".$data."%' AND es_estado < 99 ";
-echo $selectSQL;
+if($data!=0){
+	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' OR es_codigo like '%".$data."%' OR es_plan like '%".$data."%' AND es_estado < 99 ";
+}else{
+	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' AND es_estado < 99 ORDER BY es_fecha_registro DESC LIMIT 30";
+}
+//echo $selectSQL;
 
 $row_cons = mysql_query($selectSQL);
 
@@ -32,7 +36,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				$fila[1],
 				$btn.$btn_2);
 }
-//echo $arrayData[1][1]
+
 echo json_encode($arrayData);
 
 $con->disconnect();	
