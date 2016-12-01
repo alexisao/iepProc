@@ -303,7 +303,6 @@
                 "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
             }
         });
-        get_estudiante(0, oTable);
         $("#btn_search").on("click", function(){ 
             get_estudiante($("#inp_search").val(), oTable);
         });
@@ -315,10 +314,12 @@
             $('#inp_search').keypress(function(e){   
                if(e.which == 13){      
                  get_estudiante($("#inp_search").val(), oTable);
+                 console.log("hi:"+$("#inp_search").val())
                }   
             });     
         });
         
+        get_estudiante(null, oTable);
         /*
         get_registrados(oTable);*/
         //$(".loading_box").fadeOut(10000);

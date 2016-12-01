@@ -10,16 +10,18 @@ $con = new con();
 $con->connect();
 
 $data = $_POST["dt"];
+#echo "informacion recibida por post: ".$data;
 
 $response = new StdClass;
 
+
 /*Consulta a la Bd*/
-if($data!=0){
-	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' OR es_codigo like '%".$data."%' OR es_plan like '%".$data."%' AND es_estado < 99 ";
+if($data==null){
+	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_estado < 99 ORDER BY es_fecha_registro DESC LIMIT 30";
 }else{
-	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' AND es_estado < 99 ORDER BY es_fecha_registro DESC LIMIT 30";
+	$selectSQL ="SELECT * FROM tbl_estudiantes WHERE es_nombre like '%".$data."%' OR es_codigo like '%".$data."%' OR es_plan like '%".$data."%' AND es_estado < 99 ";
 }
-//echo $selectSQL;
+#echo $selectSQL;
 
 $row_cons = mysql_query($selectSQL);
 
