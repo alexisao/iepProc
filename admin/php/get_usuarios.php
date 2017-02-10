@@ -59,7 +59,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 			break;
 	}
 
-	$btn_rol = '<button type="button" title="'.$tipo.'" class="btn btn-'.$color.' btn-circle"><i class="fa fa-user"></i></button>';
+	$btn_rol = '<button type="button" onclick="ver_accesos('.$fila[0].');" title="Ver registro de '.$tipo.'" class="btn btn-'.$color.' btn-circle" data-toggle="modal" data-target="#modal_verRegistro" ><i class="fa fa-clock-o"></i></button>';
 
 	$arrayData[]=array(
 				$fila[1],
@@ -68,7 +68,7 @@ while ($fila = mysql_fetch_array($row_cons)) {
 				$estado,
 				$fila[5],
 				$btn_turnos.'
-				<button type="button" onclick="cambiar_clave('.$fila[0].');" title="Cambiar Clave" class="btn btn-default btn-circle" data-toggle="modal" data-target="#modal_cambiarClave" data-whatever="@mdo"><i class="fa fa-edit"></i></button>
+				<button type="button" onclick="cambiar_clave('.$fila[0].');" title="Cambiar Clave" class="btn btn-default btn-circle" data-toggle="modal" data-target="#modal_cambiarClave"><i class="fa fa-edit"></i></button>
 				<button type="button" onclick="borrar_usuario('.$fila[0].',this);" title="Borrar usuario" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
 				'
 				);

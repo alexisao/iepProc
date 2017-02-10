@@ -180,5 +180,23 @@ class funciones{
 		}
 	}
 
+	function make_history($us_id){
+		/*Obtenemos IP*/
+		$ip = '192.168.0.1';
+
+		/*insercción*/
+		$selectSQL ="INSERT INTO tbl_historial_accesos (ha_us_id, ha_ip)
+					 	VALUES (".$us_id.", '".$ip."'');";
+
+		$row_cons = mysql_query($selectSQL);
+
+		if($row_cons){
+			$res=true;
+			$mes="Guardado Satisfactoriamente.";
+		}else{
+			$res=false;
+			$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+		}		
+	}
 }
 ?>

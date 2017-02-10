@@ -116,7 +116,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -132,20 +131,15 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab" id="tab_home">Sala 1</a>
-                                </li>
-                                <li><a href="#profile" data-toggle="tab" id="tab_profile">Sala 2</a>
-                                </li>
-                                <li><a href="#messages" data-toggle="tab" id="tab_messages">Sala 3</a>
-                                </li>
-                                <li><a href="#reservas" data-toggle="tab" id="tab_reservas">Horarios de reserva</a>
-                                </li>
-                                <li><a href="#" data-toggle="modal" data-target="#add_estudiante_modal"> <i class="fa fa-plus fa-fw"></i> Registrar Nuevo Estudiante</a>
-                                </li>
+                                <li class="active"><a href="#reservas" data-toggle="tab" id="tab_reservas">Horarios de reserva</a></li>
+                                <li id="sala-1" style="display:none;"><a href="#home" data-toggle="tab" id="tab_home">Sala 1</a></li>
+                                <li id="sala-2" style="display:none;"><a href="#profile" data-toggle="tab" id="tab_profile">Sala 2</a></li>
+                                <li id="sala-3" style="display:none;"><a href="#messages" data-toggle="tab" id="tab_messages">Sala 3</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#add_estudiante_modal"> <i class="fa fa-plus fa-fw"></i> Registrar Nuevo Estudiante</a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="home"><br>
+                                <div class="tab-pane fade out" id="home"><br>
                                     <div class="col-lg-8">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -367,7 +361,7 @@
                                     </div>
                                     <!-- /.col-lg-4 -->
                                 </div>
-                                <div class="tab-pane fade" id="reservas"><br>
+                                <div class="tab-pane fade in active" id="reservas"><br>
                                     <div class="col-lg-12">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -550,31 +544,57 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+    /*
+	*	Función load_sala_activa: muestra la sala 
+	*	@return: null
+	*/
+	function load_sala_activa(turno){
+		if (turno!=null){
+			switch(turno){
+		        case 0:
+		            $("#sala-1").fadeIn();
+		            var oTable1 = $('#datatables-sala1').dataTable({
+		                responsive: true,
+		                language: {
+		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+		                }
+		            });
+		            get_flujo(oTable1,1);
+		        break;
+
+		        case 1:
+		            $("#sala-2").fadeIn();
+		            var oTable2 = $('#datatables-sala2').dataTable({
+		                responsive: true,
+		                language: {
+		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+		                }
+		            });
+		            get_flujo(oTable2,2);
+		        break;
+
+		        case 2:
+                    $("#sala-3").fadeIn();
+		            var oTable3 = $('#datatables-sala3').dataTable({
+		                responsive: true,
+		                language: {
+		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+		                }
+		            });
+		            get_flujo(oTable3,3);
+		        break;
+		    }
+		}
+	}
+
     $(document).ready(function() {
+        $("#sala-1").hide();
+        $("#sala-2").hide();
+        $("#sala-3").hide();
         get_user("#fld-email");
-        var oTable1 = $('#datatables-sala1').dataTable({
-        	responsive: true,
-        	language: {
-                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-            }
-        });
-        var oTable2 = $('#datatables-sala2').dataTable({
-        	responsive: true,
-        	language: {
-                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-            }
-        });
-        var oTable3 = $('#datatables-sala3').dataTable({
-            responsive: true,
-            language: {
-                "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-            }
-        });
 
-    	get_flujo(oTable1,1);
-        get_flujo(oTable2,2);
-        get_flujo(oTable3,3);
-
+        //Validamos la sala a mostrar
+        get_sala_activa();
     });
     </script>
 

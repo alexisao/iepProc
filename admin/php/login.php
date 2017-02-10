@@ -15,13 +15,6 @@ $usu = $_POST['user'];
 $pass = $_POST['pass'];
 $pass = sha1(md5($pass));
 
-
-
-/* $pass_encriptada1 = md5 ($pass); //Encriptacion nivel 1
-$pass_encriptada2 = crc32($pass_encriptada1); //Encriptacion nivel 1
-$pass_encriptada3 = sha1("xtemp".$pass_encriptada2); //Encriptacion nivel 3
-$pass_encriptada4 = crypt($pass_encriptada3, "xtemp"); //Encriptacion nivel 2 */
-
 /*Consulta a la Bd*/
 $selectSQL ="SELECT * FROM `tbl_users` WHERE `us_email` = '$usu' AND `us_clave` = '$pass'";
 
@@ -40,6 +33,9 @@ if($existe){
 	$_SESSION["ses_email"] = $existe['us_email'];
 	$_SESSION["ses_tipo"] = $existe['us_tipo'];
 
+	#guardamos registro de acceso
+	$fun::make_history($existe['us_id']);
+
 	switch ($existe["us_tipo"]) {
 		case "6":
 			$url = "../pages/flujocendopu.html";
@@ -50,7 +46,7 @@ if($existe){
 			break;
 	}
 	
-	//$menu = 1;
+//$menu = 1;
 }else{
 	$res = false;
 	$mes = "Usuario y/o contraseña incorrectos";

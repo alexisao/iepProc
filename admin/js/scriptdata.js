@@ -1154,6 +1154,10 @@ function get_detalle(id,tipo){
 			case 3:
 				$(".modal-body").html(data.mes);
 			break;
+			
+			case 4:
+				$(".modal-body").html(data.mes);
+			break;
 
 			default:
 				$("#detalle-sol").html(data.mes);
@@ -1194,20 +1198,42 @@ function cambiar_estado(id,estado,tipo){
 */
 function get_all_turnos(c, e){
 	$.ajax({
-	url: "../php/get_all_turnos.php",
-	dataType: "json",
-	type: "POST",
-	data: {e:e},
-	success: function(data){
-	if(data.res==true){
-		$("#"+c).empty();
-		$("#"+c).html(data.bdy);
-	}
-	else{
-		growl("danger",data.mes);
-	}
+		url: "../php/get_all_turnos.php",
+		dataType: "json",
+		type: "POST",
+		data: {e:e},
+		success: function(data){
+		if(data.res==true){
+			$("#"+c).empty();
+			$("#"+c).html(data.bdy);
+		}
+		else{
+			growl("danger",data.mes);
+		}
 	}});
 }
+/*
+*	Función get_sala_activa: trae la sala que se debe visualizar
+*	@return: int
+*/
+function get_sala_activa(){
+	var ret;
+	$.ajax({
+		url: "../php/get_sala_activa.php",
+		dataType: "json",
+		type: "POST",
+		success: function(data){
+			if(data.res==true){
+				load_sala_activa(data.val);
+			}
+			else{
+				growl("danger",data.mes);
+			}
+		}
+	});
+}
+
+
 
 $(document).on("click", "#ps1", function(event){
 	get_flujoFranjas(1);
