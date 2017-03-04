@@ -45,9 +45,12 @@ if($row_turno!=false){
 #var_dump($row_turno);
 #echo "<br>consulta: ".$qry_turno."<br>";
 
-$response->res = $res;
+$response->res = true;
+
+#$response->res = $res;
 $response->mes = $mes;
-$response->val = $value;
+#$response->val = $value;
+$response->val = 0;
 
 echo json_encode($response);
 ?>

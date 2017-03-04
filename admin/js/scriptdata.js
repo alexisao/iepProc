@@ -1142,6 +1142,13 @@ function ocultarDetalle(id){
 *	Función get_detalle
 *	@return: información detallada del registro a consultar
 */
+function ver_accesos(id){
+	get_detalle(id,4)
+}
+/*
+*	Función get_detalle
+*	@return: información detallada del registro a consultar
+*/
 function get_detalle(id,tipo){
 	$.ajax({
 	url: "../php/get_detalle.php",

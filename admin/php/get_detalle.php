@@ -31,6 +31,10 @@ switch ($tipo) {
 					WHERE F.fe_es_codigo = ".$id." AND
 					F.fe_Estado<10";
 		break;
+	case 4:
+		$selectSQL = "SELECT * FROM tbl_historial_accesos WHERE ha_us_id=".$id.";";
+		break;
+
 }
 
 
@@ -87,6 +91,13 @@ while ($fila = mysql_fetch_array($row_cons)) {
                     <td>'.$salida.'</td>
                     <td>'.$fila[14].'</td>
                	   </tr>';			
+	}elseif ($tipo==4) {
+		$htmlStr.='<tr>
+                    <td>'.$i++.'</td>
+                    <td>'.$fila[1].'</td>
+                    <td>'.$fila[2].'</td>
+                    <td>'.$fila[3].'</td>
+               	   </tr>';
 	}else{
 		$res=false;
 		$mes="Hubo un error al realizar la consulta, por favor comuniquese con el administrador del sistema y notifiquele el error";
@@ -98,6 +109,11 @@ if($tipo==3){
 	$res = true;
 	$mes = $htmlStr;
 }
+if($tipo==4){
+	$res = true;
+	$mes = $htmlStr;
+}
+
 
 $response->res = $res;
 $response->mes = $mes;
