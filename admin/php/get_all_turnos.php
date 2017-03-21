@@ -36,7 +36,7 @@ $html .= '
       for ($i=0; $i < sizeof($icon); $i++) {
         # code...
         $html .= '<tr>
-                    <td>Turno '.($i+1).'<br> Inicio: <br>Fin: </td>';
+                    <td>Turno '.($i+1).'<!--<br> Inicio: <br>Fin: --></td>';
         for ($j=0; $j < sizeof($dias); $j++) {
           # code...
           $sql_tur = "SELECT T.tu_us_id, U.us_usuario, U.us_email FROM tbl_turnos AS T

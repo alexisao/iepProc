@@ -28,13 +28,15 @@ $url="";
 if($existe){
 	$res = true;
 	$mes = "Welcome";
+	$usuario = explode("@", $existe["us_email"]);
 	
 	$_SESSION["ses_id"] = $existe['us_id'];
 	$_SESSION["ses_email"] = $existe['us_email'];
+	$_SESSION["ses_user"] = $usuario[0];
 	$_SESSION["ses_tipo"] = $existe['us_tipo'];
 
 	#guardamos registro de acceso
-	$fun::make_history($existe['us_id']);
+	$fun->make_history($existe['us_id']);
 
 	switch ($existe["us_tipo"]) {
 		case "6":

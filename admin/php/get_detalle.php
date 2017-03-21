@@ -32,16 +32,16 @@ switch ($tipo) {
 					F.fe_Estado<10";
 		break;
 	case 4:
-		$selectSQL = "SELECT * FROM tbl_historial_accesos WHERE ha_us_id=".$id.";";
+		$selectSQL = "SELECT * FROM tbl_historial_accesos WHERE ha_us_id=".$id." ORDER BY ha_id DESC;";
 		break;
 
 }
-
 
 $row_cons = mysql_query($selectSQL);
 $hideStr = 'class="hide"';
 $i=1;
 $tbody="";
+$htmlStr="";
 
 while ($fila = mysql_fetch_array($row_cons)) { 
 
@@ -92,11 +92,12 @@ while ($fila = mysql_fetch_array($row_cons)) {
                     <td>'.$fila[14].'</td>
                	   </tr>';			
 	}elseif ($tipo==4) {
+		if($fila[3]===NULL){$salida='<span class="label label-success">Conectado</span>';}else{$salida=$fila[3];}
 		$htmlStr.='<tr>
                     <td>'.$i++.'</td>
-                    <td>'.$fila[1].'</td>
                     <td>'.$fila[2].'</td>
-                    <td>'.$fila[3].'</td>
+                    <td>'.$salida.'</td>
+                    <td>'.$fila[4].'</td>
                	   </tr>';
 	}else{
 		$res=false;

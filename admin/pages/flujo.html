@@ -40,7 +40,6 @@
     <![endif]-->
 
 </head>
-
 <body>
 
     <div id="wrapper">
@@ -59,8 +58,19 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
-                <li class=""><i class="fa fa-user fa-fw"></i><span id="fld-email">-$user-</span></li>
-                <li><a id="btn-logout" title="Salir"><i class="fa fa-sign-out fa-fw"></i><div id="logout"></div></a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i><span id="fld-email">-$user-</span></a></li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Configuración</a></li>
+                        <li class="divider"></li>
+                        <li><a id="btn-logout" title="Salir"><i class="fa fa-sign-out fa-fw"></i>Salir<div id="logout"></div></a></li>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->

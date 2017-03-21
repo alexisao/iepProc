@@ -1163,7 +1163,7 @@ function get_detalle(id,tipo){
 			break;
 			
 			case 4:
-				$(".modal-body").html(data.mes);
+				$("#table-body").html(data.mes);
 			break;
 
 			default:

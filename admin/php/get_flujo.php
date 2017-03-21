@@ -18,6 +18,7 @@ $con = new con();
 $con->connect();
 
 $response = new StdClass;
+$arrayData= new array();
 
 /*Consulta a la Bd*/
 $selectSQL ="SELECT FE.fe_pc,ES.es_nombre, ES.es_codigo, ES.es_plan, FE.fe_id FROM tbl_flujo_estudiantes FE

@@ -289,18 +289,32 @@
             <h4 class="modal-title" id="exampleModalLabel-lg">Detalle de Actividades</h4>
           </div>
           <div class="modal-body">
-
+          <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ingreso</th>
+                        <th>Salida</th>
+                        <th>IP</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    
+                </tbody>
+            </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
           </div>
         </div>
       </div>
+     </div>
     </div>
 
     <!-- Bootstrap Modal para traer turnos -->
     <div class="modal fade" id="get_turnos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -371,7 +385,7 @@
                         </div>
                       </div>
                   </div>
-
+                </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">ok</button>
@@ -407,20 +421,16 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-        get_user("#fld-email");
-        $(document).ready(function() {
-         oTable = $('#datatables-observaciones').dataTable({responsive: true});
-        get_usuarios(oTable);
-        //get_all_turnos('p_cont_s1',1);
-        //get_all_turnos('p_cont_s2',2);
-        //get_all_turnos('p_cont_s3',3);
-        //get_all_turnos('p_cont_s4',4);
+    get_user("#fld-email");
+    $(document).ready(function() {
         $("#get_turnos_button").click(function(){
           get_all_turnos('p_cont_s1',1);
           get_all_turnos('p_cont_s2',2);
           get_all_turnos('p_cont_s3',3);
           get_all_turnos('p_cont_s4',4);
         });
+        oTable = $('#datatables-observaciones').dataTable({responsive: true});
+        get_usuarios(oTable);
     });
     </script>
     <script language="javascript">

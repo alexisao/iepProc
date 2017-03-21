@@ -9,7 +9,7 @@ $response = new StdClass;
 if(isset($_SESSION["ses_id"]))
 	{
 		$s_id=$_SESSION["ses_id"];
-		$s_email=$_SESSION["ses_email"];
+		$s_email=$_SESSION["ses_user"];
 		$s_tipo=$_SESSION["ses_tipo"];
 		$res = true;
 		$mes = $s_email;

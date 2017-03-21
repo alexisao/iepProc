@@ -180,22 +180,52 @@ class funciones{
 		}
 	}
 
-	function make_history($us_id){
+	function make_history($us_id, $login=true){
 		/*Obtenemos IP*/
-		$ip = '192.168.0.1';
+		$ip = $_SERVER['REMOTE_ADDR'];
 
-		/*insercción*/
-		$selectSQL ="INSERT INTO tbl_historial_accesos (ha_us_id, ha_ip)
-					 	VALUES (".$us_id.", '".$ip."'');";
+		if ($login) {
+			/*insercción - Login*/
+			try{
+				$selectSQL ="INSERT INTO tbl_historial_accesos (ha_us_id, ha_ip)
+							 	VALUES (".$us_id.", '".$ip."');";
 
-		$row_cons = mysql_query($selectSQL);
+				$row_cons = mysql_query($selectSQL);
 
-		if($row_cons){
-			$res=true;
-			$mes="Guardado Satisfactoriamente.";
+				if($row_cons){
+					$res=true;
+					$mes="Guardado Satisfactoriamente.";
+				}else{
+					$res=false;
+					$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+				}
+			}
+			catch(Exception $e){
+				echo "Excepción capturada: ".$e->getMessage();
+			}
+
 		}else{
-			$res=false;
-			$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+			/*actualización - Logout*/
+			try{
+				$selectSQL ="SELECT * FROM tbl_historial_accesos WHERE ha_us_id=".$us_id." ORDER BY ha_timestamp_in DESC LIMIT 1;";
+				$res_ses = mysql_query($selectSQL);
+				while ($row_ses = mysql_fetch_assoc($res_ses)) {
+					# code...
+					$updateSQL = 'UPDATE tbl_historial_accesos SET ha_timestamp_out=now() WHERE ha_id='.$row_ses['ha_id'].';';
+					$res_insert = mysql_query($updateSQL);
+				}
+				if($res_insert){
+					$res=true;
+					$mes="Guardado Satisfactoriamente.";
+				}else{
+					$res=false;
+					$mes="Error al guardar, revisar campos y si el problema persiste favor comunicarse con el administrador del sistema.";
+				}
+
+			}
+			catch(Exception $e){
+				echo "Excepción capturada: ".$e->getMessage();
+			}
 		}		
 	}
 }
