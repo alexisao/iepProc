@@ -67,7 +67,6 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>Configuración</a></li>
                         <li class="divider"></li>
                         <li><a id="btn-logout" title="Salir"><i class="fa fa-sign-out fa-fw"></i>Salir<div id="logout"></div></a></li>
-                        </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -149,7 +148,7 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade out" id="home"><br>
+                                <div class="tab-pane" id="home"><br>
                                     <div class="col-lg-8">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -224,7 +223,7 @@
                                     </div>
                                     <!-- /.col-lg-4 -->
                                 </div>
-                                <div class="tab-pane fade" id="profile"><br>
+                                <div class="tab-pane" id="profile"><br>
                                     <div class="col-lg-8">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -296,7 +295,7 @@
                                     </div>
                                     <!-- /.col-lg-4 -->
                                 </div>
-                                <div class="tab-pane fade" id="messages"><br>
+                                <div class="tab-pane" id="messages"><br>
                                     <div class="col-lg-8">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -549,58 +548,21 @@
     <!-- bootbox modal -->
     <script src="../bower_components/bootbox/bootbox.min.js"></script>
 
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$("#sala-1").hide();
+    	$("#sala-2").hide();
+    	$("#sala-3").hide();
+    });
+    </script>
+
     <!-- Custom Scripts -->
     <script src="../js/scriptdata.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    /*
-	*	Función load_sala_activa: muestra la sala 
-	*	@return: null
-	*/
-	function load_sala_activa(turno){
-		if (turno!=null){
-			switch(turno){
-		        case 0:
-		            $("#sala-1").fadeIn();
-		            var oTable1 = $('#datatables-sala1').dataTable({
-		                responsive: true,
-		                language: {
-		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-		                }
-		            });
-		            get_flujo(oTable1,1);
-		        break;
-
-		        case 1:
-		            $("#sala-2").fadeIn();
-		            var oTable2 = $('#datatables-sala2').dataTable({
-		                responsive: true,
-		                language: {
-		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-		                }
-		            });
-		            get_flujo(oTable2,2);
-		        break;
-
-		        case 2:
-                    $("#sala-3").fadeIn();
-		            var oTable3 = $('#datatables-sala3').dataTable({
-		                responsive: true,
-		                language: {
-		                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
-		                }
-		            });
-		            get_flujo(oTable3,3);
-		        break;
-		    }
-		}
-	}
 
     $(document).ready(function() {
-        $("#sala-1").hide();
-        $("#sala-2").hide();
-        $("#sala-3").hide();
         get_user("#fld-email");
 
         //Validamos la sala a mostrar

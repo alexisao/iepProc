@@ -1240,6 +1240,47 @@ function get_sala_activa(){
 	});
 }
 
+/*
+*	Función load_sala_activa: muestra la sala 
+*	@return: null
+*/
+function load_sala_activa(turno){
+	switch(turno){
+        case "1":
+            $("#sala-1").show();
+            var oTable1 = $('#datatables-sala1').dataTable({
+                responsive: true,
+                language: {
+                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+                }
+            });
+            get_flujo(oTable1,1);
+        break;
+
+        case "2":
+            $("#sala-2").show();
+            var oTable2 = $('#datatables-sala2').dataTable({
+                responsive: true,
+                language: {
+                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+                }
+            });
+            get_flujo(oTable2,2);
+        break;
+
+        case "3":
+            $("#sala-3").show();
+            var oTable3 = $('#datatables-sala3').dataTable({
+                responsive: true,
+                language: {
+                    "url": "http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+                }
+            });
+            get_flujo(oTable3,3);
+        break;
+    }
+}
+
 
 
 $(document).on("click", "#ps1", function(event){
